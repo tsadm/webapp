@@ -1,8 +1,8 @@
-<!doctype html>
-<html>
-  <head>
-  </head>
-  <body>
+{% extends 'tsadm/base.html' %}
+
+{% block title %}tsadm - login{% endblock %}
+
+{% block content %}
 
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
@@ -37,5 +37,4 @@
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'user:password_reset' %}">Lost password?</a></p>
 
-  </body>
-</html>
+{% endblock %}
