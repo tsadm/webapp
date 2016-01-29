@@ -1,6 +1,12 @@
+import os.path
+
+_DEFAULT = {
+    'CODE_DIR': os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+}
+
 class TSAdmCfg:
     def get(self, name, default=None):
-        return default
+        return _DEFAULT.get(name, default)
 
 __CFG = None
 

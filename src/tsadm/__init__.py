@@ -3,7 +3,7 @@ from tsadmdb import getDB
 from tsadmuser import TSAdmUser
 from tsadmlog import TSAdmLogger
 
-logger = TSAdmLogger()
+logger = TSAdmLogger(__name__)
 
 class TSAdm:
     cfg = None
