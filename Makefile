@@ -1,7 +1,7 @@
 default:
 
 clean:
-	find src/ -type d -name __pycache__ | xargs rm -rf
+	@cd src/ && make clean
 
 build-master:
 	docker build -t tsadm/master build/master/
