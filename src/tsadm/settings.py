@@ -15,15 +15,17 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+from tsadmcfg import TSAdmCfg
+cfg = TSAdmCfg()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '30+6)w05hhjh_^*f(%z3v8#apr)bryp)g6i%0&3motx873^+ey'
+SECRET_KEY = cfg.get('SECRET_KEY', '30+6)w05hhjh_^*f(%z3v8#apr)bryp)g6i%0&3motx873^+ey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = cfg.get('DEBUG', True)
 
 ALLOWED_HOSTS = []
 
@@ -76,8 +78,8 @@ WSGI_APPLICATION = 'tsadm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': cfg.get('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': cfg.get('DB_NAME', os.path.join(BASE_DIR, 'db.sqlite3')),
     }
 }
 
@@ -104,13 +106,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = cfg.get('LANG', 'en-us')
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = cfg.get('TZ', 'UTC')
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
