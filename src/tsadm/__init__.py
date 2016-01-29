@@ -1,7 +1,7 @@
-from tsadmcfg import TSAdmCfg
+from tsadmcfg import getConfig
 
 class TSAdm:
     cfg = None
 
     def __init__(self):
-        self.cfg = TSAdmCfg()
+        self.cfg = getConfig()
