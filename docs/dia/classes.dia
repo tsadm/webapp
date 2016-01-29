@@ -1578,13 +1578,13 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O14">
       <dia:attribute name="obj_pos">
-        <dia:point val="-17,-4"/>
+        <dia:point val="-17,-4.1"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-17.05,-4.05;-10.1625,-1.15"/>
+        <dia:rectangle val="-17.05,-4.15;-10.1625,-1.25"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="-17,-4"/>
+        <dia:point val="-17,-4.1"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="6.7874999999999996"/>
