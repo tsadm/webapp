@@ -260,7 +260,7 @@
         <dia:real val="2.7999999999999998"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#TSAdmConfig#</dia:string>
+        <dia:string>#TSAdmCfg#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>

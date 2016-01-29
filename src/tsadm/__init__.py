@@ -1,4 +1,4 @@
-from tsadmcfg import getConfig
+from tsadmcfg import TSAdmCfg
 from tsadmdb import getDB
 from tsadmuser import TSAdmUser
 from tsadmlog import TSAdmLogger
@@ -12,6 +12,6 @@ class TSAdm:
 
     def __init__(self):
         logger.debug('TSAdm init')
-        self.cfg = getConfig()
+        self.cfg = TSAdmCfg()
         self.db = getDB()
         self.user = TSAdmUser()
