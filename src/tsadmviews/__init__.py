@@ -17,11 +17,18 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         logger.debug('get_context_data')
         context = super(TSAdmView, self).get_context_data(**kwargs)
-        context['tsadm'] = dict()
+        context['tsadm'] = dict(
+            user=self.tsadm.user,
+        )
         return context
 
     def dispatch(self, request, *args, **kwargs):
         logger.debug('dispatch', request)
+        logger.debug('django user:', self.request.user)
         response = super(TSAdmView, self).dispatch(request, *args, **kwargs)
         logger.debug('dispatch response:', response)
+        try:
+            logger.debug('response context data:', response.context_data)
+        except AttributeError as e:
+            logger.debug('no template response:', e)
         return response
