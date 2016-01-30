@@ -1,5 +1,5 @@
 from tsadmlog import TSAdmLogger
-from tsadmviews import TSAdmView
+from tsadm.views import TSAdmView
 
 logger = TSAdmLogger(__name__)
 
