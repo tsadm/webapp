@@ -24,3 +24,6 @@ class TSAdmLogger:
 
     def debug(self, *msg):
         self._print(*msg)
+
+    def error(self, *msg):
+        self._print('ERROR:', *msg)
