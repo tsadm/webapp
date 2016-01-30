@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>{% block title %}tsadm error {{ error.status }}{% endblock %}</title>
+  </head>
+  <body>
+{% block content %}
+    <pre>{{ error.status }} - {{ error.message }}</pre>
+{% endblock %}
+  </body>
+</html>
