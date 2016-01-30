@@ -1,7 +1,7 @@
 import sys
 import time
 
-from tsadm.config import TSAdmCfg
+from .config import TSAdmCfg
 
 class _Log:
     cfg = None

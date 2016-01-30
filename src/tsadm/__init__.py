@@ -1,6 +1,6 @@
 from .config import TSAdmCfg
+from .log import TSAdmLogger
 from tsadmuser import TSAdmUser
-from tsadmlog import TSAdmLogger
 
 logger = TSAdmLogger(__name__)
 

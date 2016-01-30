@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
 from . import TSAdm
-from tsadmlog import TSAdmLogger
+from .log import TSAdmLogger
 
 logger = TSAdmLogger(__name__)
 

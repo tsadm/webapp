@@ -1,4 +1,4 @@
-from tsadmlog import TSAdmLogger
+from tsadm.log import TSAdmLogger
 from tsadm.views import TSAdmView
 
 logger = TSAdmLogger(__name__)
