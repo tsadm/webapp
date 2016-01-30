@@ -1,4 +1,4 @@
-from tsadmcfg import TSAdmCfg
+from .config import TSAdmCfg
 from tsadmuser import TSAdmUser
 from tsadmlog import TSAdmLogger
 
