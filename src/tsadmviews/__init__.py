@@ -19,3 +19,9 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
         context = super(TSAdmView, self).get_context_data(**kwargs)
         context['tsadm'] = dict()
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        logger.debug('dispatch', request)
+        response = super(TSAdmView, self).dispatch(request, *args, **kwargs)
+        logger.debug('dispatch response:', response)
+        return response
