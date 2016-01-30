@@ -13,3 +13,9 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
     def __init__(self):
         logger.debug('TSAdmView init')
         self.tsadm = TSAdm()
+
+    def get_context_data(self, **kwargs):
+        logger.debug('get_context_data')
+        context = super(TSAdmView, self).get_context_data(**kwargs)
+        context['tsadm'] = dict()
+        return context
