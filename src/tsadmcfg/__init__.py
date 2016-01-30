@@ -1,10 +1,7 @@
-import os.path
-
-_DEFAULT = {
-    'CODE_DIR': os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+_CFG = {
     'LOG_FTIME': '%d/%b/%Y %H:%M:%S',
 }
 
 class TSAdmCfg:
     def get(self, name, default=None):
-        return _DEFAULT.get(name, default)
+        return _CFG.get(name, default)
