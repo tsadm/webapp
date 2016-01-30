@@ -22,5 +22,6 @@ from .views import HomeView
 urlpatterns = [
     url(r'^$', HomeView.as_view()),
     url(r'^auth/', include('tsadm.auth_urls')),
+    url(r'^user/', include('tsadmuser.urls')),
     url(r'^admin/', admin.site.urls),
 ]

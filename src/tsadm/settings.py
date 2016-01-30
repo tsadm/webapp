@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tsadm.apps.TSAdmConfig',
+    'tsadmuser.apps.TSAdmUserConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
