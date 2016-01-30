@@ -1153,7 +1153,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>##</dia:string>
+            <dia:string>#context#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="3"/>
