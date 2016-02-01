@@ -2,9 +2,6 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
 
-USER_NAME = 'tester'
-USER_PASS = 'gyLwHEberRq43ohP'
-
 class TSAdmAnonTest(TestCase):
     def test_HomeView(self):
         resp = self.client.get(reverse('home'))
@@ -12,7 +9,7 @@ class TSAdmAnonTest(TestCase):
 
 class TSAdmTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username=USER_NAME, password=USER_PASS)
+        self.user = User.objects.create_user(username='tester')
         self.client.force_login(self.user)
 
     def test_HomeView(self):
