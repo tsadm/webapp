@@ -9,4 +9,7 @@ build-master:
 dia-png-export:
 	@cd docs/dia && make png-export
 
-.PHONY: default clean build-master dia-png-export
+travis-test:
+	@cd src/ && make run-master-tests
+
+.PHONY: default clean build-master dia-png-export travis-test

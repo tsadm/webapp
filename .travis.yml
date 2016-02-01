@@ -1,0 +1,8 @@
+sudo: required
+services:
+  - docker
+language: python
+before_install:
+  - make build-master
+script:
+  - make travis-test
