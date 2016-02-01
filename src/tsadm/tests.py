@@ -7,19 +7,23 @@ class TSAdmAnonTest(TestCase):
         resp = self.client.get(reverse('home'))
         self.assertRedirects(resp, '{}?next=/'.format(reverse('login')))
 
-class TSAdmTest(TestCase):
+class TSAdmTestBase(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='tester')
         self.client.force_login(self.user)
 
+    def getURL(self, name):
+        return reverse(name)
+
+class TSAdmTest(TSAdmTestBase):
     def test_HomeView(self):
-        resp = self.client.get(reverse('home'))
+        resp = self.client.get(self.getURL('home'))
         self.assertEqual(resp.status_code, 200)
 
     def test_HttpOptions(self):
-        resp = self.client.options(reverse('home'))
+        resp = self.client.options(self.getURL('home'))
         self.assertEqual(resp.get('Allow'), 'GET, HEAD, OPTIONS')
 
     def test_HttpCharset(self):
-        resp = self.client.head(reverse('home'))
+        resp = self.client.head(self.getURL('home'))
         self.assertEqual(resp.charset, 'utf-8')
