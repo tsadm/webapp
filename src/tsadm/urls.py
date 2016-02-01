@@ -20,8 +20,8 @@ from django.contrib import admin
 from .views import HomeView
 
 urlpatterns = [
-    url(r'^$', HomeView.as_view()),
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^auth/', include('tsadm.auth_urls')),
-    url(r'^user/', include('tsadmuser.urls')),
+    url(r'^user/', include('tsadmuser.urls', namespace='user')),
     url(r'^admin/', admin.site.urls),
 ]
