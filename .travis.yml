@@ -1,8 +1,17 @@
 sudo: required
+
 services:
   - docker
+
 language: python
+
+python:
+  - "3.4"
+
 before_install:
   - make build-master
+
+install: true
+
 script:
   - make travis-test
