@@ -5,9 +5,10 @@ from .config import TSAdmCfg
 
 _LEVELS = {
     'OFF': 0,
-    'DEBUG': 1,
+    'ERROR': 1,
     'WARNING': 2,
-    'ERROR': 3,
+    'INFO': 3,
+    'DEBUG': 4,
 }
 
 class _Log:
@@ -31,8 +32,14 @@ class TSAdmLogger:
         if _LEVELS.get(level) <= _LEVELS.get(_Log.level):
             print('[{}] {} - {}:'.format(time.strftime(_Log.ftime), level, self._caller), *msg, file=sys.stderr)
 
-    def debug(self, *msg):
-        self._print(*msg, level='DEBUG')
-
     def error(self, *msg):
         self._print(*msg, level='ERROR')
+
+    def warning(self, *msg):
+        self._print(*msg, level='WARNING')
+
+    def info(self, *msg):
+        self._print(*msg, level='INFO')
+
+    def debug(self, *msg):
+        self._print(*msg, level='DEBUG')
