@@ -27,7 +27,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
     def dispatch(self, request, *args, **kwargs):
         logger.debug('dispatch:', request)
         try:
-            self.tsadm.user.load(self.request.user)
+            self.tsadm.start(self.request.user)
         except Exception as e:
             return self.dispatchException(e)
         else:

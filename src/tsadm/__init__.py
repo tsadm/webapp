@@ -12,3 +12,8 @@ class TSAdm:
         logger.debug('TSAdm init')
         self.cfg = TSAdmCfg()
         self.user = TSAdmUser()
+
+    def start(self, django_user):
+        if not django_user.is_anonymous():
+            return self.user.load(django_user)
+        return True
