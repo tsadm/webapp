@@ -5,6 +5,6 @@ run-master:
 	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/django -p 8000:8000 tsadm/master $(DOCKER_CMD)
 
 run-master-tests:
-	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/django tsadm/master /opt/tsadm/django/manage.py test
+	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/django tsadm/master /opt/tsadm/django/manage.py test $(TEST_SUITE)
 
 .PHONY: clean run-master run-master-tests
