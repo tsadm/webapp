@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 
@@ -24,7 +25,9 @@ class TSAdmLogger:
         if not _Log.initDone:
             _Log.cfg = TSAdmCfg()
             _Log.ftime = _Log.cfg.get('LOG_FTIME')
-            _Log.level = _Log.cfg.get('LOG_LEVEL', 'DEBUG')
+            _Log.level = os.environ.get('TSADM_LOG', None)
+            if _Log.level is None:
+                _Log.level = _Log.cfg.get('LOG_LEVEL', 'DEBUG')
             _Log.initDone = True
         self._caller = caller
 
