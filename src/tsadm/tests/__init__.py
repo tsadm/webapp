@@ -7,5 +7,5 @@ class TSAdmTestBase(TestCase):
         self.user = User.objects.create_user(username='tester')
         self.client.force_login(self.user)
 
-    def getURL(self, name):
-        return reverse(name)
+    def getURL(self, urlTag, kwargs=None):
+        return reverse(urlTag, kwargs=kwargs)
