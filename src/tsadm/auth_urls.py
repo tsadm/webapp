@@ -1,10 +1,17 @@
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
+from .config import TSAdmCfg
+
+cfg = TSAdmCfg()
+
+def tmplPath(relPath):
+    absPath = 'theme/{}/{}'.format(cfg.get('TEMPLATES_THEME', 'devel'), relPath)
+    return absPath
 
 urlpatterns = [
     # login/logout
     url(r'^login/$', auth_views.login,
-        {'template_name': 'tsadm/login.html'}, name='login'),
+        {'template_name': tmplPath('tsadm/login.html')}, name='login'),
     url(r'^logout/$', auth_views.logout_then_login, name='logout'),
 
     # password change

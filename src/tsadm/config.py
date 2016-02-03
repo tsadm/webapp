@@ -1,5 +1,6 @@
 _CFG = {
     'LOG_FTIME': '%d/%b/%Y %H:%M:%S',
+    'TEMPLATES_THEME': 'devel',
 }
 
 class TSAdmCfg:

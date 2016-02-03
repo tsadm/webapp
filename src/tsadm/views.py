@@ -26,6 +26,8 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         logger.debug('dispatch:', request)
+        self.template_name = 'theme/devel/{}'.format(self.template_name)
+        logger.debug('dispatch template:', self.template_name)
         try:
             self.tsadm.start(self.request.user)
         except Exception as e:
