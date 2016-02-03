@@ -12,7 +12,7 @@ env:
     - TSADM_LOG=OFF
 
 install:
-  - pip install Django>=1.9,<=1.10
+  - pip install 'Django>=1.9,<=1.10'
 
 script:
   - python manage.py test
