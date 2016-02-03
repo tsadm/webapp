@@ -11,7 +11,7 @@ python:
   - "3.5"
 
 before_install:
-  - make build-master
+  - make docker-build-master
 
 install: true
 
