@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^auth/', include('tsadm.auth_urls')),
     url(r'^user/', include('tsadmuser.urls', namespace='user')),
+    url(r'^site/', include('tsadmsite.urls', namespace='site')),
     url(r'^admin/', admin.site.urls),
 ]
