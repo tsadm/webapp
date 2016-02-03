@@ -1,7 +1,4 @@
-sudo: required
-
-services:
-  - docker
+sudo: false
 
 language: python
 
@@ -10,10 +7,16 @@ python:
   - "3.4"
   - "3.5"
 
-before_install:
-  - make docker-build-master
+env:
+  global:
+    - TSADM_LOG=OFF
 
-install: true
+install:
+  - pip install Django>=1.9,<=1.10
 
 script:
-  - make travis-test
+  - python manage.py test
+
+notifications:
+  irc:
+    - irc.freenode.org#tsadm
