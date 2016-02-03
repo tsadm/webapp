@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
 
-print(sys.version, file=sys.stderr)
+print('Python', sys.version, file=sys.stderr)
 
 class TSAdmTestBase(TestCase):
     def setUp(self):
