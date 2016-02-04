@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import os
 import sys
 import time
@@ -36,7 +38,8 @@ class TSAdmLogger:
         elif _Log.level not in _LEVELS.keys():
             _Log.level = 'WARNING'
 
-    def _print(self, *msg, level=None):
+    def _print(self, *msg, **kwargs):
+        level = kwargs['level']
         if _LEVELS.get(level) <= _LEVELS.get(_Log.level):
             print('[{}] {} - {}:'.format(time.strftime(_Log.ftime), level, self._caller), *msg, file=sys.stderr)
 

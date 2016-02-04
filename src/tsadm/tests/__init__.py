@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys
 from django.core.urlresolvers import reverse
 from django.test import TestCase
