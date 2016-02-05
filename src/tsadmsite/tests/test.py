@@ -1,9 +1,9 @@
 from tsadm.tests import TSAdmTestBase
 from ..models import TSAdmSiteDB
 
-class TSAdmTest(TSAdmTestBase):
+class TSAdmSiteTest(TSAdmTestBase):
     def setUp(self):
-        super(TSAdmTest, self).setUp()
+        super(TSAdmSiteTest, self).setUp()
         site = TSAdmSiteDB(name='fakesite')
         site.save()
 
