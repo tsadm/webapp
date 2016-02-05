@@ -8,4 +8,4 @@ class TSAdmHostDB(models.Model):
     fqdn = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
-        return "Host:"+self.fqdn
+        return self.fqdn

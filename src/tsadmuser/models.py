@@ -13,4 +13,4 @@ class TSAdmUserDB(models.Model):
     )
 
     def __str__(self):
-        return "User:"+self.user.username
+        return self.user.username

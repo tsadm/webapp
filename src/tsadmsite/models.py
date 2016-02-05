@@ -8,7 +8,7 @@ class TSAdmSiteDB(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
-        return "Site:"+self.name
+        return self.name
 
 class TSAdmSiteEnvDB(models.Model):
     class Meta:
