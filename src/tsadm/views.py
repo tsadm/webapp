@@ -38,7 +38,6 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
         else:
             try:
                 response = super(TSAdmView, self).dispatch(request, *args, **kwargs)
-                logger.debug('dispatch response:', response)
             except Exception as e:
                 return self.dispatchException(e)
             else:
@@ -46,6 +45,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
                     logger.debug('response context data:', response.context_data)
                 except AttributeError as e:
                     logger.debug('no template response:', e)
+                logger.debug('dispatch response:', repr(response))
                 return response
 
     def dispatchException(self, exc):
