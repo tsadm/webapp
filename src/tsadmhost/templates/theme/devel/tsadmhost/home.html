@@ -1,0 +1,10 @@
+{% extends 'theme/devel/tsadm/base.html' %}
+
+{% block content %}
+
+<pre>{{ user }}
+{{ tsadm.user }}
+{{ tsadm.host }}
+{{ tsadm.host.ID }} {{ tsadm.host.fqdn }}</pre>
+
+{% endblock %}

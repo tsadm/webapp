@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'tsadm.apps.TSAdmConfig',
     'tsadmuser.apps.TSAdmUserConfig',
     'tsadmsite.apps.TSAdmSiteConfig',
+    'tsadmhost.apps.TSAdmHostConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
