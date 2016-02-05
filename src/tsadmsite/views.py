@@ -1,6 +1,7 @@
 from tsadm.log import TSAdmLogger
 from tsadm.views import TSAdmView
 from . import TSAdmSite
+from .models import TSAdmSiteDB
 
 logger = TSAdmLogger(__name__)
 
@@ -13,5 +14,6 @@ class SiteView(TSAdmView):
 
     def get_context_data(self, **kwargs):
         context = super(SiteView, self).get_context_data(**kwargs)
-        context['tsadm']['site'] = TSAdmSite(kwargs['name'])
+        dbobj = TSAdmSiteDB.objects.get(name=kwargs['name'])
+        context['tsadm']['site'] = TSAdmSite(dbobj)
         return context
