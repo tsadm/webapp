@@ -1,11 +1,12 @@
 from django.contrib import admin
 from .models import TSAdmSiteDB, TSAdmSiteEnvDB
 
-class SiteAdmin(admin.ModelAdmin):
-    pass
+class SiteEnvAdmin(admin.StackedInline):
+    model = TSAdmSiteEnvDB
+    extra = 0
 
-class SiteEnvAdmin(admin.ModelAdmin):
-    pass
+
+class SiteAdmin(admin.ModelAdmin):
+    inlines = [SiteEnvAdmin]
 
 admin.site.register(TSAdmSiteDB, SiteAdmin)
-admin.site.register(TSAdmSiteEnvDB, SiteEnvAdmin)

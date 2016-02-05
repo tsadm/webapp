@@ -26,4 +26,4 @@ class TSAdmSiteEnvDB(models.Model):
     )
 
     def __str__(self):
-        return "SiteEnv:"+self.name
+        return '{}.{}'.format(self.site.name, self.name)
