@@ -52,7 +52,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
         logger.error('dispatch exception:', repr(exc))
         return TemplateResponse(
             self.request,
-            'tsadm/error.html',
+            'theme/{}/tsadm/error.html'.format(self.tsadm.cfg.get('TEMPLATES_THEME', 'devel')),
             {'error': {'status': 500, 'message': str(exc)}},
             status=500,
         )
