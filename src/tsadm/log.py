@@ -27,16 +27,17 @@ class TSAdmLogger:
         if not _Log.initDone:
             _Log.cfg = TSAdmCfg()
             _Log.ftime = _Log.cfg.get('LOG_FTIME')
-            self._setLevel()
+            self._setLevel(os.environ.get('TSADM_LOG', None))
             _Log.initDone = True
         self._caller = caller
 
-    def _setLevel(self):
-        _Log.level = os.environ.get('TSADM_LOG', None)
-        if _Log.level is None:
+    def _setLevel(self, lvl=None):
+        if lvl is None:
             _Log.level = _Log.cfg.get('LOG_LEVEL', 'WARNING')
-        elif _Log.level not in _LEVELS.keys():
+        elif lvl not in _LEVELS.keys():
             _Log.level = 'WARNING'
+        else:
+            _Log.level = lvl
 
     def _print(self, *msg, **kwargs):
         level = kwargs['level']

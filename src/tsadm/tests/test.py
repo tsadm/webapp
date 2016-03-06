@@ -1,6 +1,13 @@
 from . import TSAdmTestBase
 
 class TSAdmTest(TSAdmTestBase):
+
+    def testLogger_SetLevel(self):
+        from ..log import TSAdmLogger
+        logger = TSAdmLogger(__name__)
+        logger._setLevel('OFF')
+        logger._setLevel('__INVALID__')
+
     def test_HomeView(self):
         resp = self.client.get(self.getURL('home'))
         self.assertEqual(resp.status_code, 200)
