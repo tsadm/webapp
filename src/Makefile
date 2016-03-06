@@ -3,6 +3,7 @@ TSADM_LOG ?= OFF
 clean:
 	@find . -type d -name __pycache__ | xargs rm -rfv
 	@find . -type f -iname '*.py[co]' | xargs rm -rfv
+	@rm -rf .coverage htmlcov
 
 run-master:
 	docker run -it --rm -e TSADM_LOG=$(TSADM_LOG) --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -p 8000:8000 tsadm/master $(DOCKER_CMD)
