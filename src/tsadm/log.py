@@ -27,7 +27,10 @@ class TSAdmLogger:
         if not _Log.initDone:
             _Log.cfg = TSAdmCfg()
             _Log.ftime = _Log.cfg.get('LOG_FTIME')
-            self._setLevel(os.environ.get('TSADM_LOG', None))
+            lvl = os.environ.get('TSADM_LOG', None)
+            if lvl is not None:
+                lvl = lvl.upper()
+            self._setLevel(lvl)
             _Log.initDone = True
         self._caller = caller
 
