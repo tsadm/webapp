@@ -9,6 +9,12 @@ class TSAdmTest(TSAdmTestBase):
         logger._setLevel('__INVALID__')
         logger._setLevel(None)
 
+    def test_DispatchException(self):
+        from ..views import TSAdmView
+        view = TSAdmView.as_view()
+        resp = view(None)
+        self.assertEqual(resp.status_code, 500)
+
     def test_HomeView(self):
         resp = self.client.get(self.getURL('home'))
         self.assertEqual(resp.status_code, 200)

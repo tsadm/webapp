@@ -38,8 +38,8 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
         else:
             try:
                 response = super(TSAdmView, self).dispatch(request, *args, **kwargs)
-            except Exception as e:
-                return self.dispatchException(e)
+            except Exception as dispatchExc:
+                return self.dispatchException(dispatchExc)
             else:
                 try:
                     logger.debug('response context data:', response.context_data)

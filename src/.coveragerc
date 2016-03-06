@@ -3,8 +3,11 @@ omit =
     tsadm/wsgi.py
 
 exclude_lines =
+    # for models.py files
     def __str__
-    except Exception as e:
+
+    # don't know how to test a super().dispatch exception yet...
+    except Exception as dispatchExc
 
 [html]
 directory = htmlcov
