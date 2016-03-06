@@ -1,2 +1,4 @@
 .coverage
 htmlcov/
+db.sqlite3
+appskel/

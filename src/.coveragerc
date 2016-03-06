@@ -1,5 +1,6 @@
 [report]
 omit =
+    appskel/*
     tsadm/wsgi.py
 
 exclude_lines =

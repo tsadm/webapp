@@ -1,5 +1,3 @@
 *.py[co]
 __pycache__
 *.dia.autosave
-src/db.sqlite3
-src/appskel
