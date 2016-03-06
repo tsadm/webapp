@@ -24,4 +24,7 @@ tests-coverage:
 	python3-coverage report
 	rm -rf htmlcov && python3-coverage html
 
-.PHONY: clean run-master run-masterdev run-tests-py2 run-tests-py3 run-tests tests-coverage
+django-runserver:
+	python3 manage.py runserver 0.0.0.0:8000
+
+.PHONY: clean run-master run-masterdev run-tests-py2 run-tests-py3 run-tests tests-coverage django-runserver
