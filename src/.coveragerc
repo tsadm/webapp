@@ -1,0 +1,10 @@
+[report]
+omit =
+    tsadm/wsgi.py
+
+exclude_lines =
+    def __str__
+    except Exception as e:
+
+[html]
+directory = htmlcov
