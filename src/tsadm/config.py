@@ -1,4 +1,5 @@
 _CFG = {
+    'LOG_LEVEL': 'OFF',
     'LOG_FTIME': '%d/%b/%Y %H:%M:%S',
     'TEMPLATES_THEME': 'devel',
 }
