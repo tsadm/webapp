@@ -14,10 +14,14 @@ env:
 install:
   - pip install 'Django>=1.9,<1.10'
   - pip install coverage
+  - pip install codecov
 
 script:
   - cd src/ && coverage run --source='.' manage.py test
+
+after_success:
   - coverage report
+  - codecov
 
 notifications:
   irc:
