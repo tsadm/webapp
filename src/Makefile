@@ -19,4 +19,9 @@ run-tests-py3:
 
 run-tests: run-tests-py2 run-tests-py3
 
-.PHONY: clean run-master run-masterdev run-tests-py2 run-tests-py3 run-tests
+tests-coverage:
+	python3-coverage run --source='.' manage.py test
+	python3-coverage report
+	rm -rf htmlcov && python3-coverage html
+
+.PHONY: clean run-master run-masterdev run-tests-py2 run-tests-py3 run-tests tests-coverage
