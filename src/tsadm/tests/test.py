@@ -15,10 +15,6 @@ class TSAdmTest(TSAdmTestBase):
         resp = view(None)
         self.assertEqual(resp.status_code, 500)
 
-    def test_HomeView(self):
-        resp = self.client.get(self.getURL('home'))
-        self.assertEqual(resp.status_code, 200)
-
     def test_HttpOptions(self):
         resp = self.client.options(self.getURL('home'))
         self.assertEqual(resp.get('Allow'), 'GET, HEAD, OPTIONS')
