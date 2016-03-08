@@ -19,7 +19,7 @@ class TSAdmSiteEnvDB(models.Model):
         verbose_name = "SiteEnv"
         verbose_name_plural = "SiteEnvs"
 
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=64, unique=False)
     site = models.ForeignKey(
         TSAdmSiteDB,
         on_delete=models.PROTECT,
