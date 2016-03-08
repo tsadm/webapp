@@ -2,6 +2,8 @@
 
 {% block content %}
 <pre>
-    {{ tsadm.user.siteEnvs }}
+{% for site in tsadm.user.sites %}
+{{ site.ID }} {{ site.name }}
+{% endfor %}
 </pre>
 {% endblock %}
