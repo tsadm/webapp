@@ -7,3 +7,9 @@
 {% endfor %}
 </pre>
 {% endblock %}
+
+{% block tests %}
+{% for site in tsadm.user.sites %}
+<!-- TEST:site:{{ site.name }} -->
+{% endfor %}
+{% endblock %}
