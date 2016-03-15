@@ -2,7 +2,16 @@
 
 {% block content %}
 <p>
-    {{ tsadm.site.ID }} {{ tsadm.site.name }}
+    {{ tsadm.site.ID }} {{ tsadm.site.name }}<br>
+    <br>
+{% for senv in tsadm.siteEnvs %}
+    {{ senv }}<br>
+{% endfor %}
 </p>
-<pre>{{ tsadm.siteEnvs }}</pre>
+{% endblock %}
+
+{% block tests %}
+{% for senv in tsadm.siteEnvs %}
+    <!-- TEST:site.env:{{ senv.name }} -->
+{% endfor %}
 {% endblock %}
