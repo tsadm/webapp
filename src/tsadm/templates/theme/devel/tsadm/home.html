@@ -3,7 +3,7 @@
 {% block content %}
 <p>
 {% for site in tsadm.user.sites %}
-    {{ site.ID }} {{ site.name }}<br>
+    <a href="{% url 'site:home' site.name %}">{{ site.name }}</a><br>
 {% endfor %}
 </p>
 {% endblock %}

@@ -16,4 +16,5 @@ class SiteView(TSAdmView):
         context = super(SiteView, self).get_context_data(**kwargs)
         dbobj = TSAdmSiteDB.objects.get(name=kwargs['name'])
         context['tsadm']['site'] = TSAdmSite(dbobj)
+        context['tsadm']['siteEnvs'] = self.tsadm.user.siteEnvs(dbobj.id)
         return context

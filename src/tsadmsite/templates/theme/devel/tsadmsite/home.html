@@ -1,10 +1,8 @@
 {% extends 'theme/devel/tsadm/base.html' %}
 
 {% block content %}
-
-<pre>{{ user }}
-{{ tsadm.user }}
-{{ tsadm.site }}
-{{ tsadm.site.ID }} {{ tsadm.site.name }}</pre>
-
+<p>
+    {{ tsadm.site.ID }} {{ tsadm.site.name }}
+</p>
+<pre>{{ tsadm.siteEnvs }}</pre>
 {% endblock %}
