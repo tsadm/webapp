@@ -2,10 +2,10 @@
 
 {% block content %}
 <p>
-    {{ tsadm.site.ID }} {{ tsadm.site.name }}<br>
+    {{ tsadm.site.name }}<br>
     <br>
 {% for senv in tsadm.siteEnvs %}
-    {{ senv }}<br>
+    {{ senv.name }} {{ senv.host.fqdn }}<br>
 {% endfor %}
 </p>
 {% endblock %}

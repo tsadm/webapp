@@ -31,4 +31,4 @@ class TSAdmUser:
         return sites
 
     def siteEnvs(self, siteId):
-        return self._db.siteenv.filter(site__id=siteId).order_by('site__name', 'name').values()
+        return self._db.siteenv.filter(site__id=siteId).order_by('site__name', 'name')
