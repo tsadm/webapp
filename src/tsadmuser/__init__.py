@@ -6,6 +6,7 @@ logger = TSAdmLogger(__name__)
 
 class TSAdmUser:
     _db = None
+    name = None
 
     def load(self, django_user):
         logger.debug('load django user:', django_user)
@@ -16,6 +17,8 @@ class TSAdmUser:
             logger.warning('user not initialized')
             self._db = TSAdmUserDB(user=django_user)
             return self._db.save()
+        finally:
+            self.name = self._db.user.username
 
     def sites(self):
         sites = list()

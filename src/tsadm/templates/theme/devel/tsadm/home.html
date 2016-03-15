@@ -1,15 +1,15 @@
 {% extends 'theme/devel/tsadm/base.html' %}
 
 {% block content %}
-<pre>
+<p>
 {% for site in tsadm.user.sites %}
-{{ site.ID }} {{ site.name }}
+    {{ site.ID }} {{ site.name }}<br>
 {% endfor %}
-</pre>
+</p>
 {% endblock %}
 
 {% block tests %}
 {% for site in tsadm.user.sites %}
-<!-- TEST:site:{{ site.name }} -->
+    <!-- TEST:site:{{ site.name }} -->
 {% endfor %}
 {% endblock %}

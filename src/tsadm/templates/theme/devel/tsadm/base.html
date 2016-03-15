@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <title>{% block title %}tsadm{% endblock %}</title>
-  </head>
-  <body>
-      {% block content %}{% endblock %}
-      {% block tests %}{% endblock %}
-  </body>
+<head>
+    <title>{% block title %}tsadm{% endblock %}</title>
+</head>
+<body>
+{% block user_name %}{% include 'theme/devel/tsadmuser/navbar.html' %}{% endblock %}
+{% block content %}{% endblock %}
+{% block tests %}{% endblock %}
+</body>
 </html>
