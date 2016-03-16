@@ -4,7 +4,9 @@
     <title>{% block title %}tsadm{% endblock %}</title>
 </head>
 <body>
-{% include 'theme/devel/tsadmuser/parts/navbar.html' %}
+{% block navbar_top %}
+    {% include 'theme/devel/tsadm/parts/navbar.html' %}
+{% endblock %}
 {% block content %}{% endblock %}
 {% block tests %}{% endblock %}
 </body>
