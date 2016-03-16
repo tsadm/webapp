@@ -25,7 +25,7 @@ urlpatterns = [
     # password reset
     url(r'^password_reset/$', auth_views.password_reset,
         {'template_name': tmplPath('tsadm/password_reset_form.html'),
-        'email_template_name': tmplPath('tsadm/password_reset_email.html'),
+        'email_template_name': tmplPath('tsadm/parts/password_reset_email.html'),
         'subject_template_name': tmplPath('tsadm/password_reset_subject.txt'),},
         name='password_reset'),
     url(r'^password_reset/done/$', auth_views.password_reset_done,
