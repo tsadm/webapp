@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import TSAdmHostDB
+from .models import HostDB
 
 class HostAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(TSAdmHostDB, HostAdmin)
+admin.site.register(HostDB, HostAdmin)

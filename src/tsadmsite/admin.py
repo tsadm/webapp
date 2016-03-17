@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import TSAdmSiteDB, TSAdmSiteEnvDB, TSAdmSiteEnvACL
+from .models import SiteDB, SiteEnvDB, SiteEnvACL
 
 class SiteEnvAdmin(admin.StackedInline):
-    model = TSAdmSiteEnvDB
+    model = SiteEnvDB
     extra = 0
 
 
@@ -12,5 +12,5 @@ class SiteAdmin(admin.ModelAdmin):
 class SiteEnvACLAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(TSAdmSiteDB, SiteAdmin)
-admin.site.register(TSAdmSiteEnvACL, SiteEnvACLAdmin)
+admin.site.register(SiteDB, SiteAdmin)
+admin.site.register(SiteEnvACL, SiteEnvACLAdmin)

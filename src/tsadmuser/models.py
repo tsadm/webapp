@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-class TSAdmUserDB(models.Model):
+class UserDB(models.Model):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'

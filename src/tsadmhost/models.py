@@ -1,6 +1,6 @@
 from django.db import models
 
-class TSAdmHostDB(models.Model):
+class HostDB(models.Model):
     class Meta:
         verbose_name = "Host"
         verbose_name_plural = "Hosts"

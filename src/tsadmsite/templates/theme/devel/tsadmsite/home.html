@@ -6,12 +6,7 @@
     <br>
 {% for senv in tsadm.siteEnvs %}
     <a href="{% url 'site:env' tsadm.site.name senv.name %}">{{ senv.name }}</a><br>
-{% endfor %}
-</p>
-{% endblock %}
-
-{% block tests %}
-{% for senv in tsadm.siteEnvs %}
     <!-- TEST:site.env:{{ senv.name }} -->
 {% endfor %}
+</p>
 {% endblock %}

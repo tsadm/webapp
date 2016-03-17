@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import TSAdmUserDB
+from .models import UserDB
 
 class UserAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(TSAdmUserDB, UserAdmin)
+admin.site.register(UserDB, UserAdmin)

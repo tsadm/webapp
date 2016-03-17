@@ -1,10 +1,10 @@
 from tsadm.tests import TSAdmTestBase
-from ..models import TSAdmHostDB
+from ..models import HostDB
 
 class TSAdmHostTest(TSAdmTestBase):
     def setUp(self):
         super(TSAdmHostTest, self).setUp()
-        host = TSAdmHostDB(fqdn='fake.host.test')
+        host = HostDB(fqdn='fake.host.test')
         host.save()
 
     def test_HostView(self):

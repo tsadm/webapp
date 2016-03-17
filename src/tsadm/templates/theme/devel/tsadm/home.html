@@ -2,14 +2,9 @@
 
 {% block content %}
 <p>
-{% for site in tsadm.user.sites %}
+{% for site in tsadm.userSites %}
     <a href="{% url 'site:home' site.name %}">{{ site.name }}</a><br>
-{% endfor %}
-</p>
-{% endblock %}
-
-{% block tests %}
-{% for site in tsadm.user.sites %}
     <!-- TEST:site:{{ site.name }} -->
 {% endfor %}
+</p>
 {% endblock %}

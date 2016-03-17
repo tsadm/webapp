@@ -1,8 +1,7 @@
 from django.db import models
 
 
-
-class TSAdmSiteDB(models.Model):
+class SiteDB(models.Model):
     class Meta:
         verbose_name = "Site"
         verbose_name_plural = "Sites"
@@ -13,24 +12,23 @@ class TSAdmSiteDB(models.Model):
         return self.name
 
 
-
-class TSAdmSiteEnvDB(models.Model):
+class SiteEnvDB(models.Model):
     class Meta:
         verbose_name = "SiteEnv"
         verbose_name_plural = "SiteEnvs"
 
     name = models.CharField(max_length=64, unique=False)
     site = models.ForeignKey(
-        TSAdmSiteDB,
+        SiteDB,
         on_delete=models.PROTECT,
     )
     host = models.ForeignKey(
-        'tsadmhost.TSAdmHostDB',
+        'tsadmhost.HostDB',
         on_delete=models.PROTECT,
     )
     users = models.ManyToManyField(
-        'tsadmuser.TSAdmUserDB',
-        through='TSAdmSiteEnvACL',
+        'tsadmuser.UserDB',
+        through='SiteEnvACL',
         related_name='siteenv',
     )
 
@@ -38,14 +36,13 @@ class TSAdmSiteEnvDB(models.Model):
         return '{}.{}'.format(self.site.name, self.name)
 
 
-
-class TSAdmSiteEnvACL(models.Model):
+class SiteEnvACL(models.Model):
     class Meta:
         verbose_name = "SiteEnvACL"
         verbose_name_plural = "SiteEnvsACL"
 
-    user = models.ForeignKey('tsadmuser.TSAdmUserDB', on_delete=models.PROTECT)
-    siteenv = models.ForeignKey(TSAdmSiteEnvDB, on_delete=models.PROTECT)
+    user = models.ForeignKey('tsadmuser.UserDB', on_delete=models.PROTECT)
+    siteenv = models.ForeignKey(SiteEnvDB, on_delete=models.PROTECT)
 
     def __str__(self):
         return '{} {}.{}'.format(self.user.user.username, self.siteenv.site.name, self.siteenv.name)

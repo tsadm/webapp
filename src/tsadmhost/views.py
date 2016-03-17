@@ -1,7 +1,6 @@
 from tsadm.log import TSAdmLogger
 from tsadm.views import TSAdmView
-from . import TSAdmHost
-from .models import TSAdmHostDB
+from .models import HostDB
 
 logger = TSAdmLogger(__name__)
 
@@ -14,6 +13,5 @@ class HostView(TSAdmView):
 
     def get_context_data(self, **kwargs):
         context = super(HostView, self).get_context_data(**kwargs)
-        dbobj = TSAdmHostDB.objects.get(pk=kwargs['ID'])
-        context['tsadm']['host'] = TSAdmHost(dbobj)
+        context['tsadm']['host'] = HostDB.objects.get(pk=kwargs['ID'])
         return context
