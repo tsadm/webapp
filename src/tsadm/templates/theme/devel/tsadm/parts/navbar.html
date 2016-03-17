@@ -3,7 +3,7 @@
 {% if tsadm.user %}
     - <a href="{% url 'user:home' %}">{{ tsadm.user.name }}</a>
     <!-- TEST:user.name:{{ tsadm.user.name }} -->
-{% elif user %}
+{% elif not user.is_anonymous %}
     - <a href="{% url 'user:home' %}">{{ user.username }}</a>
 {% endif %}
 </p>
