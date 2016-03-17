@@ -74,8 +74,12 @@ from django.http import JsonResponse
 class TSAdmJsonView(TSAdmView):
 
     def render_to_response(self, context, **respargs):
+        prettyPrint = None
+        if self.tsadm.cfg.get('JSON_PRETTY_PRINT', False):
+            prettyPrint = {'indent': 4, 'sort_keys': True}
         return JsonResponse(
             self.get_data(context),
+            json_dumps_params=prettyPrint,
             **respargs
         )
 
