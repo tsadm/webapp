@@ -20,6 +20,7 @@ class SiteView(TSAdmView):
             context['tsadm']['site'],
         )
         if not context['tsadm']['siteEnvs']:
+            logger.error(kwargs['name'], 'no envs authorized for this site')
             raise self.tsadm.Error(400, 'invalid request')
         return context
 

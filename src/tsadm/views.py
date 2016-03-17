@@ -43,10 +43,13 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
             try:
                 response = super(TSAdmView, self).dispatch(request, *args, **kwargs)
             except ObjectDoesNotExist as e:
+                logger.error('object does not exists!')
                 return self.dispatchException(e, status=400, message='invalid request')
             except self.tsadm.Error as e:
+                logger.error('tsadm exception:', e)
                 return self.dispatchException(e, status=e.status, message=e.message)
             except Exception as dispatchExc:
+                logger.error('exception:', dispatchException)
                 return self.dispatchException(dispatchExc)
             else:
                 try:
@@ -58,7 +61,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
 
 
     def dispatchException(self, exc, status=500, message=None):
-        logger.error('dispatch exception:', repr(exc))
+        logger.debug('dispatch exception:', repr(exc))
         if message is None:
             message = str(exc)
         return TemplateResponse(

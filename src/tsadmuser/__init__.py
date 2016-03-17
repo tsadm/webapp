@@ -28,8 +28,11 @@ def sitesAll(user):
 
 
 def site(user, name):
-    e = user.siteenv.get(site__name=name)
-    return e.site
+    try:
+        e = user.siteenv.filter(site__name=name)[0]
+        return e.site
+    except IndexError:
+        return None
 
 
 def siteEnvsAll(user, site):

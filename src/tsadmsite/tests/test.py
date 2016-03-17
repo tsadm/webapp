@@ -29,9 +29,10 @@ class TSAdmSiteTest(TSAdmTestBase):
     def test_SiteView(self):
         resp = self.client.get(self.getURL('site:home', kwargs={'name': 's0'}))
         self.assertContains(resp, 'TEST:site.env:dev', count=1, status_code=200)
-        self.assertNotContains(resp, 'TEST:site.env:test', status_code=200)
+        self.assertContains(resp, 'TEST:site.env:test', count=1, status_code=200)
         resp = self.client.get(self.getURL('site:home', kwargs={'name': 's1'}))
         self.assertContains(resp, 'TEST:site.env:test', count=1, status_code=200)
+        self.assertNotContains(resp, 'TEST:site.env:prod', status_code=200)
 
 
     def test_SiteViewNoEnvs(self):
@@ -49,6 +50,6 @@ class TSAdmSiteTest(TSAdmTestBase):
 
     def test_SiteEnvViewNoAccess(self):
         resp = self.client.get(
-            self.getURL('site:env', kwargs={'site': 's0', 'env': 'test'}),
+            self.getURL('site:env', kwargs={'site': 's1', 'env': 'prod'}),
         )
         self.assertEqual(resp.status_code, 400)

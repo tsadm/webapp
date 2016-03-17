@@ -44,7 +44,16 @@
     "fields": {
         "name": "test",
         "site": 2,
-        "host": 1
+        "host": 2
+    }
+},
+{
+    "model": "tsadmsite.siteenvdb",
+    "pk": 4,
+    "fields": {
+        "name": "prod",
+        "site": 2,
+        "host": 2
     }
 },
 {
@@ -58,6 +67,14 @@
 {
     "model": "tsadmsite.siteenvacl",
     "pk": 2,
+    "fields": {
+        "user": 1,
+        "siteenv": 2
+    }
+},
+{
+    "model": "tsadmsite.siteenvacl",
+    "pk": 3,
     "fields": {
         "user": 1,
         "siteenv": 3
