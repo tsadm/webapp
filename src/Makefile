@@ -25,4 +25,8 @@ tests-coverage:
 django-runserver:
 	python3 manage.py runserver 0.0.0.0:8000
 
+develdb:
+	python3 manage.py migrate
+	python3 manage.py loaddata testdata
+
 .PHONY: clean run-master run-masterdev run-tests-py2 run-tests-py3 run-tests tests-coverage django-runserver
