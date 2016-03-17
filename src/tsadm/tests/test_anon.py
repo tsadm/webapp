@@ -8,6 +8,7 @@ class TSAdmAnonTest(TestCase):
         from ..log import TSAdmLogger
         logger = TSAdmLogger(__name__)
         logger._setLevel('DEBUG')
+        logger.info('testing logger')
         logger._setLevel('__INVALID__')
         logger._setLevel(None)
 
