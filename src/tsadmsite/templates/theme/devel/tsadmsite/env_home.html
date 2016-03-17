@@ -1,0 +1,14 @@
+{% extends 'theme/devel/tsadm/base.html' %}
+
+{% block content %}
+<p>
+    <a href="{% url 'site:home' tsadm.site.name %}">{{ tsadm.site.name }}</a> {{ tsadm.siteEnv.name }}<br>
+    <!-- TEST:site.name:{{ tsadm.site.name }} -->
+    <br>
+    {{ tsadm.siteEnv.host.fqdn }}
+    <!-- TEST:site.env:{{ tsadm.siteEnv.name }} -->
+</p>
+{% endblock %}
+
+{% block tests %}
+{% endblock %}

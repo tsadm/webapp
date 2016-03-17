@@ -11,3 +11,8 @@ class TSAdmSiteTest(TSAdmTestBase):
         self.assertNotContains(resp, 'TEST:site.env:test', status_code=200)
         resp = self.client.get(self.getURL('site:home', kwargs={'name': 's1'}))
         self.assertContains(resp, 'TEST:site.env:test', count=1, status_code=200)
+
+    def test_SiteEnvView(self):
+        resp = self.client.get(self.getURL('site:env', kwargs={'site': 's0', 'env': 'dev'}))
+        self.assertContains(resp, 'TEST:site.name:s0', count=1, status_code=200)
+        self.assertContains(resp, 'TEST:site.env:dev', count=1, status_code=200)

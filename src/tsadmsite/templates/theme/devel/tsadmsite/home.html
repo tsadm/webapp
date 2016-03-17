@@ -5,7 +5,7 @@
     {{ tsadm.site.name }}<br>
     <br>
 {% for senv in tsadm.siteEnvs %}
-    {{ senv.name }} {{ senv.host.fqdn }}<br>
+    <a href="{% url 'site:env' tsadm.site.name senv.name %}">{{ senv.name }}</a><br>
 {% endfor %}
 </p>
 {% endblock %}
