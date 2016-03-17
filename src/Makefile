@@ -13,7 +13,7 @@ run-tests-py2:
 	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -e TSADM_LOG=off tsadm/masterdev python2 manage.py test $(TEST_SUITE)
 
 run-tests-py3:
-	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp tsadm/masterdev python3 manage.py test $(TEST_SUITE)
+	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -e TSADM_LOG=off tsadm/masterdev python3 manage.py test $(TEST_SUITE)
 
 run-tests: run-tests-py2 run-tests-py3
 
