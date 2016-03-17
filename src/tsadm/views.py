@@ -40,7 +40,9 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
             try:
                 response = super(TSAdmView, self).dispatch(request, *args, **kwargs)
             except ObjectDoesNotExist as e:
-                return self.dispatchException(e, status=404, message='not found')
+                return self.dispatchException(e, status=400, message='invalid request')
+            except self.tsadm.Error as e:
+                return self.dispatchException(e, status=e.status, message=e.message)
             except Exception as dispatchExc:
                 return self.dispatchException(dispatchExc)
             else:

@@ -19,7 +19,7 @@ class SiteView(TSAdmView):
         context['tsadm']['site'] = dbobj
         context['tsadm']['siteEnvs'] = tsadmuser.siteEnvs(self.tsadm.user, dbobj.id)
         if not context['tsadm']['siteEnvs']:
-            raise RuntimeError('invalid request')
+            raise self.tsadm.Error('invalid request', 400)
         return context
 
 

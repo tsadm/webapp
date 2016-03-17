@@ -9,9 +9,19 @@ class TSAdm:
     cfg = None
     user = None
 
+    class Error(Exception):
+        status = None
+        message = None
+
+        def __init__(self, message, status=500):
+            self.status = status
+            self.message = message
+
+
     def __init__(self):
         logger.debug('TSAdm init')
         self.cfg = TSAdmCfg()
+
 
     def start(self, django_user):
         if not django_user.is_anonymous():

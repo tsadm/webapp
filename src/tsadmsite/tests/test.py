@@ -16,7 +16,7 @@ class TSAdmSiteTest(TSAdmTestBase):
         resp = self.client.get(
             self.getURL('site:home', kwargs={'name': 'INVALID'}),
         )
-        self.assertEqual(resp.status_code, 404)
+        self.assertEqual(resp.status_code, 400)
 
 
     def test_HomeView(self):
@@ -38,7 +38,7 @@ class TSAdmSiteTest(TSAdmTestBase):
         resp = self.client.get(
             self.getURL('site:home', kwargs={'name': 's2'}),
         )
-        self.assertEqual(resp.status_code, 500)
+        self.assertEqual(resp.status_code, 400)
 
 
     def test_SiteEnvView(self):
