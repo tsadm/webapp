@@ -1,6 +1,5 @@
 from tsadm.log import TSAdmLogger
 from tsadm.views import TSAdmView
-from .models import SiteDB, SiteEnvDB
 
 import tsadmuser
 
@@ -15,9 +14,11 @@ class SiteView(TSAdmView):
 
     def get_context_data(self, **kwargs):
         context = super(SiteView, self).get_context_data(**kwargs)
-        dbobj = SiteDB.objects.get(name=kwargs['name'])
-        context['tsadm']['site'] = dbobj
-        context['tsadm']['siteEnvs'] = tsadmuser.siteEnvs(self.tsadm.user, dbobj.id)
+        context['tsadm']['site'] = tsadmuser.site(self.tsadm.user, kwargs['name'])
+        context['tsadm']['siteEnvs'] = tsadmuser.siteEnvsAll(
+            self.tsadm.user,
+            context['tsadm']['site'],
+        )
         if not context['tsadm']['siteEnvs']:
             raise self.tsadm.Error(400, 'invalid request')
         return context
@@ -32,6 +33,10 @@ class SiteEnvView(TSAdmView):
 
     def get_context_data(self, **kwargs):
         context = super(SiteEnvView, self).get_context_data(**kwargs)
-        context['tsadm']['site'] = SiteDB.objects.get(name=kwargs['site'])
-        context['tsadm']['siteEnv'] = SiteEnvDB.objects.get(name=kwargs['env'], site__name=kwargs['site'])
+        context['tsadm']['site'] = tsadmuser.site(self.tsadm.user, kwargs['site'])
+        context['tsadm']['siteEnv'] = tsadmuser.siteEnv(
+            self.tsadm.user,
+            context['tsadm']['site'],
+            kwargs['env'],
+        )
         return context

@@ -16,7 +16,7 @@ def load(django_user):
     return user
 
 
-def sites(user):
+def sitesAll(user):
     sites = list()
     prevId = None
     for env in user.siteenv.order_by('site__name', 'name'):
@@ -27,5 +27,14 @@ def sites(user):
     return sites
 
 
-def siteEnvs(user, siteId):
-    return user.siteenv.filter(site__id=siteId).order_by('site__name', 'name')
+def site(user, name):
+    e = user.siteenv.get(site__name=name)
+    return e.site
+
+
+def siteEnvsAll(user, site):
+    return user.siteenv.filter(site=site).order_by('site__name', 'name')
+
+
+def siteEnv(user, site, name):
+    return user.siteenv.get(site=site, name=name)

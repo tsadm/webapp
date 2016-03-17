@@ -79,6 +79,6 @@ class HomeView(TSAdmView):
         logger.debug('get_context_data')
         context = super(HomeView, self).get_context_data(**kwargs)
         context['tsadm'] = dict(
-            userSites=tsadmuser.sites(self.tsadm.user),
+            userSites=tsadmuser.sitesAll(self.tsadm.user),
         )
         return context

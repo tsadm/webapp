@@ -45,3 +45,10 @@ class TSAdmSiteTest(TSAdmTestBase):
         resp = self.client.get(self.getURL('site:env', kwargs={'site': 's0', 'env': 'dev'}))
         self.assertContains(resp, 'TEST:site.name:s0', count=1, status_code=200)
         self.assertContains(resp, 'TEST:site.env:dev', count=1, status_code=200)
+
+
+    def test_SiteEnvViewNoAccess(self):
+        resp = self.client.get(
+            self.getURL('site:env', kwargs={'site': 's0', 'env': 'test'}),
+        )
+        self.assertEqual(resp.status_code, 400)
