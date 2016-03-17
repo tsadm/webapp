@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^user/', include('tsadmuser.urls', namespace='user')),
     url(r'^site/', include('tsadmsite.urls', namespace='site')),
     url(r'^host/', include('tsadmhost.urls', namespace='host')),
+    url(r'^api/', include('tsadmapi.urls', namespace='api')),
     url(r'^admin/', admin.site.urls),
 ]
