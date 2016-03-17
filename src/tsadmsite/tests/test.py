@@ -1,10 +1,12 @@
 from tsadm.tests import TSAdmTestBase
-from ..models import TSAdmSiteDB
+from .. import TSAdmSite
+from ..models import TSAdmSiteDB, TSAdmSiteEnvDB, TSAdmSiteEnvACL
 from tsadmhost.models import TSAdmHostDB
-from tsadmsite.models import TSAdmSiteDB, TSAdmSiteEnvDB, TSAdmSiteEnvACL
 
 
 class TSAdmSiteTest(TSAdmTestBase):
+    site = None
+
     def setUp(self):
         super(TSAdmSiteTest, self).setUp()
         s0 = TSAdmSiteDB(name='s0')
@@ -31,6 +33,12 @@ class TSAdmSiteTest(TSAdmTestBase):
         acl0.save()
         acl1 = TSAdmSiteEnvACL(siteenv=s1test, user=self.user._db)
         acl1.save()
+
+        self.site = TSAdmSite(s0dev)
+
+
+    def test_Site(self):
+        self.assertEqual(self.site.ID(), 1)
 
 
     def test_HomeView(self):

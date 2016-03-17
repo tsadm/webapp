@@ -18,7 +18,7 @@ run-tests-py3:
 run-tests: run-tests-py2 run-tests-py3
 
 tests-coverage:
-	python3-coverage run --source='.' manage.py test
+	TSADM_LOG=off python3-coverage run --source='.' manage.py test
 	python3-coverage report
 	rm -rf htmlcov && python3-coverage html
 
