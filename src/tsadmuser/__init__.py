@@ -43,7 +43,7 @@ def siteEnv(user, site, name):
 def hostsAll(user):
     hl = list()
     prev = None
-    for e in user.siteenv.order_by('host'):
+    for e in user.siteenv.order_by('host__fqdn'):
         h = e.host.fqdn
         if h != prev:
             hl.append(h)
