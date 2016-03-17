@@ -1,0 +1,27 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$24000$D8hHT0JyBdXg$QJ3hP/do5oUbBhMRk2XSQLFJ/AAfUpEFd4PGuGQBBnU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "tester",
+        "first_name": "Tester",
+        "last_name": "TSAdm",
+        "email": "tester@tsadm.test",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2016-03-17T03:47:59Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tsadmuser.userdb",
+    "pk": 1,
+    "fields": {
+        "user": 1
+    }
+}
+]

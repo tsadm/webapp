@@ -1,0 +1,16 @@
+[
+{
+    "model": "tsadmhost.hostdb",
+    "pk": 1,
+    "fields": {
+        "fqdn": "fake0.tsadm.test"
+    }
+},
+{
+    "model": "tsadmhost.hostdb",
+    "pk": 2,
+    "fields": {
+        "fqdn": "fake1.tsadm.test"
+    }
+}
+]

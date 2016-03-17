@@ -8,32 +8,7 @@ class TSAdmSiteTest(TSAdmTestBase):
 
     def setUp(self):
         super(TSAdmSiteTest, self).setUp()
-        s0 = SiteDB(name='s0')
-        s0.save()
-        s1 = SiteDB(name='s1')
-        s1.save()
-        s2 = SiteDB(name='s2')
-        s2.save()
-
-        h0 = HostDB(fqdn='h0.fakehost')
-        h0.save()
-        h1 = HostDB(fqdn='h1.fakehost')
-        h1.save()
-
-        s0dev = SiteEnvDB(site=s0, name='dev', host=h0)
-        s0dev.save()
-        s0test = SiteEnvDB(site=s0, name='test', host=h1)
-        s0test.save()
-
-        s1test = SiteEnvDB(site=s1, name='test', host=h1)
-        s1test.save()
-
-        acl0 = SiteEnvACL(siteenv=s0dev, user=self.user)
-        acl0.save()
-        acl1 = SiteEnvACL(siteenv=s1test, user=self.user)
-        acl1.save()
-
-        self.site = s0dev
+        self.site = SiteDB.objects.get(name='s0')
 
 
     def test_Site(self):

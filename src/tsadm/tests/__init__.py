@@ -10,9 +10,10 @@ import tsadmuser
 print('Python', sys.version, file=sys.stderr)
 
 class TSAdmTestBase(TestCase):
+    fixtures = ['testdata']
 
     def setUp(self):
-        self.django_user = User.objects.create_user(username='tester')
+        self.django_user = User.objects.get(username='tester')
         self.client.force_login(self.django_user)
         self.user = tsadmuser.load(self.django_user)
 
