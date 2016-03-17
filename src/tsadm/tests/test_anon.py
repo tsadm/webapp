@@ -1,3 +1,4 @@
+import sys
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
@@ -8,7 +9,7 @@ class TSAdmAnonTest(TestCase):
         from ..log import TSAdmLogger
         logger = TSAdmLogger(__name__)
         logger._setLevel('DEBUG')
-        logger.info('testing logger')
+        logger.info('Python', sys.version)
         logger._setLevel('__INVALID__')
         logger._setLevel(None)
 

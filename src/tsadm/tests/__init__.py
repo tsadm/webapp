@@ -1,13 +1,8 @@
-from __future__ import print_function
-
-import sys
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
 
 import tsadmuser
-
-print('Python', sys.version, file=sys.stderr)
 
 class TSAdmTestBase(TestCase):
     fixtures = ['testdata']
