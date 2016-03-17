@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.template.response import TemplateResponse
+from django.core.exceptions import ObjectDoesNotExist
 
 from . import TSAdm
 from .log import TSAdmLogger
@@ -38,6 +39,8 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
         else:
             try:
                 response = super(TSAdmView, self).dispatch(request, *args, **kwargs)
+            except ObjectDoesNotExist as e:
+                return self.dispatchException(e, status=404, message='not found')
             except Exception as dispatchExc:
                 return self.dispatchException(dispatchExc)
             else:
@@ -48,13 +51,15 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
                 logger.debug('dispatch response:', repr(response))
                 return response
 
-    def dispatchException(self, exc):
+    def dispatchException(self, exc, status=500, message=None):
         logger.error('dispatch exception:', repr(exc))
+        if message is None:
+            message = str(exc)
         return TemplateResponse(
             self.request,
             'theme/{}/tsadm/error.html'.format(self.tsadm.cfg.get('TEMPLATES_THEME', 'devel')),
-            {'error': {'status': 500, 'message': str(exc)}},
-            status=500,
+            {'error': {'status': status, 'message': message}},
+            status=status,
         )
 
 

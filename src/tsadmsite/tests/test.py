@@ -13,6 +13,10 @@ class TSAdmSiteTest(TSAdmTestBase):
 
     def test_Site(self):
         self.assertEqual(self.site.id, 1)
+        resp = self.client.get(
+            self.getURL('site:home', kwargs={'name': 'INVALID'}),
+        )
+        self.assertEqual(resp.status_code, 404)
 
 
     def test_HomeView(self):
