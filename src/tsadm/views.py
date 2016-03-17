@@ -8,6 +8,7 @@ from .log import TSAdmLogger
 
 logger = TSAdmLogger(__name__)
 
+
 class TSAdmView(LoginRequiredMixin, TemplateView):
     tsadm = None
     http_method_names = ['get', 'head', 'options']
@@ -17,6 +18,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
         super(TSAdmView, self).__init__()
         self.tsadm = TSAdm()
 
+
     def get_context_data(self, **kwargs):
         logger.debug('get_context_data')
         context = super(TSAdmView, self).get_context_data(**kwargs)
@@ -24,6 +26,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
             user=self.tsadm.user,
         )
         return context
+
 
     def dispatch(self, request, *args, **kwargs):
         logger.debug('dispatch:', request)
@@ -53,6 +56,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
                 logger.debug('dispatch response:', repr(response))
                 return response
 
+
     def dispatchException(self, exc, status=500, message=None):
         logger.error('dispatch exception:', repr(exc))
         if message is None:
@@ -63,6 +67,20 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
             {'error': {'status': status, 'message': message}},
             status=status,
         )
+
+
+from django.http import JsonResponse
+
+class TSAdmJsonView(TSAdmView):
+
+    def render_to_response(self, context, **respargs):
+        return JsonResponse(
+            self.get_data(context),
+            **respargs
+        )
+
+    def get_data(self, context):
+        return context.get('JsonData', {})
 
 
 import tsadmuser
