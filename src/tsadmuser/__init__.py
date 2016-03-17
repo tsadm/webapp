@@ -38,3 +38,14 @@ def siteEnvsAll(user, site):
 
 def siteEnv(user, site, name):
     return user.siteenv.get(site=site, name=name)
+
+
+def hostsAll(user):
+    hl = list()
+    prev = None
+    for e in user.siteenv.order_by('host'):
+        h = e.host.fqdn
+        if h != prev:
+            hl.append(h)
+        prev = h
+    return hl

@@ -22,3 +22,8 @@ class HostInfoView(TSAdmJsonView):
     def __init__(self):
         logger.debug('HostInfoView init')
         super(HostInfoView, self).__init__()
+
+    def get_context_data(self, **kwargs):
+        context = super(HostInfoView, self).get_context_data(**kwargs)
+        context['JsonData'] = inventory.hostInfo(self.tsadm.user, kwargs['fqdn'])
+        return context

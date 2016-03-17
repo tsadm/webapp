@@ -1,18 +1,20 @@
-def _hostsList(user):
-    hl = list()
-    prev = None
-    for e in user.siteenv.order_by('host'):
-        h = e.host.fqdn
-        if h != prev:
-            hl.append(h)
-        prev = h
-    return hl
+import tsadmuser
+
+
+def hostInfo(user, host):
+    henvs = user.siteenv.filter(host__fqdn=host)
+    return {host: [repr(e) for e in henvs]}
 
 
 def hostGroups(user):
+    hosts = tsadmuser.hostsAll(user)
+    meta = {'hostvars': {}}
+    for h in hosts:
+        meta['hostvars'].update(hostInfo(user, h))
     return {
         "all": {
-            "hosts": _hostsList(user),
+            "hosts": hosts,
             "vars": {},
         },
+        "_meta": meta,
     }

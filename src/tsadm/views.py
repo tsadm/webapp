@@ -89,7 +89,6 @@ class TSAdmJsonView(TSAdmView):
 
 import tsadmuser
 
-
 class HomeView(TSAdmView):
     template_name = 'tsadm/home.html'
 
