@@ -2,7 +2,7 @@ import tsadmuser
 
 
 def hostInfo(user, host):
-    henvs = user.siteenv.filter(host__fqdn=host).order_by('site__name', 'name')
+    henvs = tsadmuser.hostEnvsAll(user, host)
     return {host: [repr(e) for e in henvs]}
 
 

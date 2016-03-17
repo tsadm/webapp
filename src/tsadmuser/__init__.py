@@ -49,3 +49,7 @@ def hostsAll(user):
             hl.append(h)
         prev = h
     return hl
+
+
+def hostEnvsAll(user, host):
+    return user.siteenv.filter(host__fqdn=host).order_by('site__name', 'name')
