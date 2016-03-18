@@ -16,6 +16,10 @@ _HOSTGROUPS = '''{
     }
 }'''
 
+_HOSTINFO = '''{
+    "fake0.tsadm.test": ["<SiteEnvDB: s0.dev>"]
+}'''
+
 
 class InventoryTest(TSAdmTestBase):
 
@@ -23,3 +27,11 @@ class InventoryTest(TSAdmTestBase):
         resp = self.client.get(self.getURL('api:inventory:hostgroups'))
         self.assertEqual(resp.status_code, 200)
         self.assertJSONEqual(resp.content.decode(), _HOSTGROUPS)
+
+    def test_HostInfoView(self):
+        resp = self.client.get(self.getURL(
+            'api:inventory:hostinfo',
+            kwargs={'fqdn': 'fake0.tsadm.test'},
+        ))
+        self.assertEqual(resp.status_code, 200)
+        self.assertJSONEqual(resp.content.decode(), _HOSTINFO)
