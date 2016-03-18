@@ -1,5 +1,5 @@
 from tsadm.log import TSAdmLogger
-from tsadm.views import TSAdmView
+from tsadm.views.base import TSAdmView
 from tsadm.errors import TSAdmError
 
 import tsadmuser

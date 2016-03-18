@@ -3,9 +3,9 @@ from django.views.generic import TemplateView
 from django.template.response import TemplateResponse
 from django.core.exceptions import ObjectDoesNotExist
 
-from . import TSAdm
-from .log import TSAdmLogger
-from .errors import TSAdmError
+from .. import TSAdm
+from ..log import TSAdmLogger
+from ..errors import TSAdmError
 
 logger = TSAdmLogger(__name__)
 
@@ -98,21 +98,3 @@ class TSAdmJsonView(TSAdmView):
             {"error": message},
             status=status,
         )
-
-
-import tsadmuser
-
-class HomeView(TSAdmView):
-    template_name = 'tsadm/home.html'
-
-    def __init__(self):
-        logger.debug('HomeView init')
-        super(HomeView, self).__init__()
-
-    def get_context_data(self, **kwargs):
-        logger.debug('get_context_data')
-        context = super(HomeView, self).get_context_data(**kwargs)
-        context['tsadm'] = dict(
-            userSites=tsadmuser.sitesAll(self.tsadm.user),
-        )
-        return context

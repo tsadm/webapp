@@ -1,5 +1,5 @@
 from tsadm.log import TSAdmLogger
-from tsadm.views import TSAdmJsonView
+from tsadm.views.base import TSAdmJsonView
 from tsadmapi import inventory
 
 logger = TSAdmLogger(__name__)
