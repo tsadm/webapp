@@ -1,20 +1,21 @@
 FROM debian:stable
 MAINTAINER Jeremías Casteglione <jeremias@tincan.co.uk>
 
-RUN echo "deb http://security.debian.org/ stable/updates main" >/etc/apt/sources.list
-RUN echo "deb http://httpredir.debian.org/debian/ stable main" >>/etc/apt/sources.list
+COPY apt.sources /etc/apt/sources.list
+COPY apt.preferences /etc/apt/preferences
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get clean && apt-get update -y && apt-get dist-upgrade -y
 
-RUN apt-get update -y \
-    && apt-get install -y python python-pip python3 python3-pip \
-           python-coverage python3-coverage less vim sqlite3 make \
-    && apt-get autoremove --purge -y && apt-get clean
+COPY apt.preferences-django /etc/apt/preferences.d/django
+COPY apt.preferences-ansible /etc/apt/preferences.d/ansible
 
-ENV DJANGO_PIP_VERSION 'Django>=1.9,<1.10'
-RUN pip2 install $DJANGO_PIP_VERSION && \
-    pip3 install $DJANGO_PIP_VERSION
+RUN apt-get clean && apt-get update -y \
+    && apt-get install -y --no-install-recommends python python3 make \
+        python-django python3-django \
+        ansible \
+        python-coverage python3-coverage \
+    && apt-get autoremove --purge -y && apt-get clean
 
 VOLUME ["/opt/tsadm/webapp"]
 WORKDIR /opt/tsadm/webapp
