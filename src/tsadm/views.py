@@ -86,8 +86,19 @@ class TSAdmJsonView(TSAdmView):
             **respargs
         )
 
+
     def get_data(self, context):
         return context.get('JsonData', {})
+
+
+    def dispatchException(self, exc, status=500, message=None):
+        logger.debug('dispatch JSON exception:', repr(exc))
+        if message is None:
+            message = str(exc)
+        return JsonResponse(
+            {},
+            status=status,
+        )
 
 
 import tsadmuser
