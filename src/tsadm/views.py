@@ -49,7 +49,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
                 logger.error('tsadm exception:', e)
                 return self.dispatchException(e, status=e.status, message=e.message)
             except Exception as dispatchExc:
-                logger.error('exception:', dispatchException)
+                logger.error('exception:', dispatchExc)
                 return self.dispatchException(dispatchExc)
             else:
                 try:
