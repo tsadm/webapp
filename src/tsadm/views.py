@@ -97,7 +97,7 @@ class TSAdmJsonView(TSAdmView):
         if message is None:
             message = str(exc)
         return JsonResponse(
-            {},
+            {"error": message},
             status=status,
         )
 
