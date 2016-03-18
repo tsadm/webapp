@@ -1,4 +1,5 @@
 from tsadm.log import TSAdmLogger
+from tsadm.errors import TSAdmError
 from django.core.exceptions import ObjectDoesNotExist
 
 logger = TSAdmLogger(__name__)
@@ -32,7 +33,7 @@ def site(user, name):
         e = user.siteenv.filter(site__name=name)[0]
         return e.site
     except IndexError:
-        return None
+        raise TSAdmError(400, 'invalid request')
 
 
 def siteEnvsAll(user, site):
@@ -63,4 +64,4 @@ def host(user, ID):
         e = user.siteenv.filter(host__id=ID)[0]
         return e.host
     except IndexError:
-        return None
+        raise TSAdmError(400, 'invalid request')
