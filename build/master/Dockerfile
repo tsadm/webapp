@@ -1,18 +1,24 @@
 FROM debian:stable
 MAINTAINER Jeremías Casteglione <jeremias@tincan.co.uk>
 
-RUN echo "deb http://cloudfront.debian.net/debian/ stable main" >/etc/apt/sources.list
+COPY apt.sources /etc/apt/sources.list
+COPY apt.preferences /etc/apt/preferences
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get clean && apt-get update -y && apt-get dist-upgrade -y && \
-    apt-get install -y python3 python3-pip && \
-    apt-get autoremove --purge -y && apt-get clean
+RUN apt-get clean && apt-get update -y && apt-get dist-upgrade -y
 
-ENV DJANGO_PIP_VERSION 'Django>=1.9,<1.10'
-RUN pip3 install $DJANGO_PIP_VERSION
+COPY apt.preferences-django /etc/apt/preferences.d/django
+COPY apt.preferences-ansible /etc/apt/preferences.d/ansible
+
+RUN apt-get clean && apt-get update -y \
+    && apt-get install -y --no-install-recommends python3 \
+        python3-django \
+        ansible \
+    && apt-get autoremove --purge -y && apt-get clean
 
 VOLUME ["/opt/tsadm/webapp"]
 WORKDIR /opt/tsadm/webapp
 
+ENV TSADM_LOG warning
 EXPOSE 8000
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
