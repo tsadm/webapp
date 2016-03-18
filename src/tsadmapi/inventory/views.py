@@ -12,9 +12,7 @@ class HostGroupsView(TSAdmJsonView):
         super(HostGroupsView, self).__init__()
 
     def get_context_data(self, **kwargs):
-        context = super(HostGroupsView, self).get_context_data(**kwargs)
-        context['JsonData'] = inventory.hostGroups(self.tsadm.user)
-        return context
+        return inventory.hostGroups(self.tsadm.user)
 
 
 class HostInfoView(TSAdmJsonView):
@@ -24,6 +22,4 @@ class HostInfoView(TSAdmJsonView):
         super(HostInfoView, self).__init__()
 
     def get_context_data(self, **kwargs):
-        context = super(HostInfoView, self).get_context_data(**kwargs)
-        context['JsonData'] = inventory.hostInfo(self.tsadm.user, kwargs['fqdn'])
-        return context
+        return inventory.hostInfo(self.tsadm.user, kwargs['fqdn'])

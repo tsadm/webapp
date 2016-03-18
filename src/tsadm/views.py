@@ -82,15 +82,13 @@ class TSAdmJsonView(TSAdmView):
         if self.tsadm.cfg.get('JSON_PRETTY_PRINT', False):
             prettyPrint = {'indent': 4, 'sort_keys': True}
         return JsonResponse(
-            self.get_data(context),
+            context,
             json_dumps_params=prettyPrint,
             **respargs
         )
 
-
-    def get_data(self, context):
-        return context.get('JsonData', {})
-
+    def get_context_data(self, **kwargs):
+        return dict()
 
     def dispatchException(self, exc, status=500, message=None):
         logger.debug('dispatch JSON exception:', repr(exc))
