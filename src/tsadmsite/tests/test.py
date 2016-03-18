@@ -13,10 +13,6 @@ class TSAdmSiteTest(TSAdmTestBase):
 
     def test_Site(self):
         self.assertEqual(self.site.id, 1)
-        resp = self.client.get(
-            self.getURL('site:home', kwargs={'name': 'INVALID'}),
-        )
-        self.assertEqual(resp.status_code, 400)
 
 
     def test_HomeView(self):
@@ -33,6 +29,13 @@ class TSAdmSiteTest(TSAdmTestBase):
         resp = self.client.get(self.getURL('site:home', kwargs={'name': 's1'}))
         self.assertContains(resp, 'TEST:site.env:test', count=1, status_code=200)
         self.assertNotContains(resp, 'TEST:site.env:prod', status_code=200)
+
+
+    def test_SiteViewNotFound(self):
+        resp = self.client.get(
+            self.getURL('site:home', kwargs={'name': 'INVALID'}),
+        )
+        self.assertEqual(resp.status_code, 400)
 
 
     def test_SiteViewNoEnvs(self):

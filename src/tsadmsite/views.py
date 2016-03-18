@@ -15,6 +15,9 @@ class SiteView(TSAdmView):
     def get_context_data(self, **kwargs):
         context = super(SiteView, self).get_context_data(**kwargs)
         context['tsadm']['site'] = tsadmuser.site(self.tsadm.user, kwargs['name'])
+        if not context['tsadm']['site']:
+            logger.error(kwargs['name'], 'site not found')
+            raise self.tsadm.Error(400, 'invalid request')
         context['tsadm']['siteEnvs'] = tsadmuser.siteEnvsAll(
             self.tsadm.user,
             context['tsadm']['site'],
