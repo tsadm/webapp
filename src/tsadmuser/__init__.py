@@ -56,3 +56,11 @@ def hostsAll(user):
 
 def hostEnvsAll(user, host):
     return user.siteenv.filter(host__fqdn=host).order_by('site__name', 'name')
+
+
+def host(user, ID):
+    try:
+        e = user.siteenv.filter(host__id=ID)[0]
+        return e.host
+    except IndexError:
+        return None

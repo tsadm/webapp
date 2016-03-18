@@ -28,6 +28,7 @@ class InventoryTest(TSAdmTestBase):
         self.assertEqual(resp.status_code, 200)
         self.assertJSONEqual(resp.content.decode(), _HOSTGROUPS)
 
+
     def test_HostInfoView(self):
         resp = self.client.get(self.getURL(
             'api:inventory:hostinfo',
@@ -35,3 +36,11 @@ class InventoryTest(TSAdmTestBase):
         ))
         self.assertEqual(resp.status_code, 200)
         self.assertJSONEqual(resp.content.decode(), _HOSTINFO)
+
+
+    def test_HostInfoViewNotFound(self):
+        resp = self.client.get(self.getURL(
+            'api:inventory:hostinfo',
+            kwargs={'fqdn': 'INVALID.HOST'},
+        ))
+        self.assertEqual(resp.status_code, 400)

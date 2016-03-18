@@ -9,3 +9,7 @@ class TSAdmHostTest(TSAdmTestBase):
     def test_HostView(self):
         resp = self.client.get(self.getURL('host:home', kwargs={'ID': 1}))
         self.assertContains(resp, 'TEST:host.fqdn:fake0.tsadm.test', status_code=200)
+
+    def test_HostViewNotFound(self):
+        resp = self.client.get(self.getURL('host:home', kwargs={'ID': 0}))
+        self.assertEqual(resp.status_code, 400)

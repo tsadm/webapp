@@ -3,7 +3,10 @@ import tsadmuser
 
 def hostInfo(user, host):
     henvs = tsadmuser.hostEnvsAll(user, host)
-    return {host: [repr(e) for e in henvs]}
+    if henvs:
+        return {host: [repr(e) for e in henvs]}
+    else:
+        return None
 
 
 def hostGroups(user):

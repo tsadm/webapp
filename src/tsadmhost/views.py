@@ -1,6 +1,6 @@
 from tsadm.log import TSAdmLogger
 from tsadm.views import TSAdmView
-from .models import HostDB
+import tsadmuser
 
 logger = TSAdmLogger(__name__)
 
@@ -13,5 +13,8 @@ class HostView(TSAdmView):
 
     def get_context_data(self, **kwargs):
         context = super(HostView, self).get_context_data(**kwargs)
-        context['tsadm']['host'] = HostDB.objects.get(pk=kwargs['ID'])
+        context['tsadm']['host'] = tsadmuser.host(self.tsadm.user, kwargs['ID'])
+        if not context['tsadm']['host']:
+            logger.error('invalid host request')
+            raise self.tsadm.Error(400, 'invalid request')
         return context
