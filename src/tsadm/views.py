@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from . import TSAdm
 from .log import TSAdmLogger
+from .errors import TSAdmError
 
 logger = TSAdmLogger(__name__)
 
@@ -45,7 +46,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
             except ObjectDoesNotExist as e:
                 logger.error('object does not exists!')
                 return self.dispatchException(e, status=400, message='invalid request')
-            except self.tsadm.Error as e:
+            except TSAdmError as e:
                 logger.error('tsadm exception:', e)
                 return self.dispatchException(e, status=e.status, message=e.message)
             except Exception as dispatchExc:

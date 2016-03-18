@@ -1,5 +1,6 @@
 from tsadm.log import TSAdmLogger
 from tsadm.views import TSAdmView
+from tsadm.errors import TSAdmError
 
 import tsadmuser
 
@@ -17,7 +18,7 @@ class SiteView(TSAdmView):
         context['tsadm']['site'] = tsadmuser.site(self.tsadm.user, kwargs['name'])
         if not context['tsadm']['site']:
             logger.error(kwargs['name'], 'site not found')
-            raise self.tsadm.Error(400, 'invalid request')
+            raise TSAdmError(400, 'invalid request')
         context['tsadm']['siteEnvs'] = tsadmuser.siteEnvsAll(
             self.tsadm.user,
             context['tsadm']['site'],

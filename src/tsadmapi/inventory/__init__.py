@@ -1,4 +1,5 @@
 import tsadmuser
+from tsadm.errors import TSAdmError
 
 
 def hostInfo(user, host):
@@ -6,7 +7,7 @@ def hostInfo(user, host):
     if henvs:
         return {host: [repr(e) for e in henvs]}
     else:
-        return None
+        raise TSAdmError(400, 'invalid request')
 
 
 def hostGroups(user):
