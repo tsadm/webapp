@@ -1,6 +1,6 @@
 DOCKER_IMG ?= tsadm/masterdev
-DOCKER_CMD ?= make html
 
+include ../mk/env.mk
 
 .PHONY: apidoc
 apidoc:
