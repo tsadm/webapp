@@ -7,7 +7,8 @@ default:
 run-master:
 	@test -d $(PWD)/../../webapp
 	@test -d $(PWD)/../../ansible
-	@docker run -it --rm --user $(DOCKER_USER) \
+	@docker run -it --rm --name tsadm-master \
+		--user $(DOCKER_USER) \
 		-v $(PWD)/../../webapp:/opt/tsadm/webapp \
 		-v $(PWD)/../../ansible:/opt/tsadm/ansible \
 		-p 8000:8000 \
