@@ -1,7 +1,4 @@
-DOCKER_CMD ?=
-DOCKER_IMG ?= tsadm/master
-TEST_SUITE ?=
-TSADM_LOG ?= off
+include ../mk/env.mk
 
 clean:
 	@find . -type d -name __pycache__ | xargs rm -rfv
