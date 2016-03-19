@@ -4,6 +4,7 @@ DOCKER_CMD ?= /bin/bash
 default:
 
 build-master:
+	docker pull debian:stable
 	docker build -t tsadm/master .
 
 build-masterdev:
