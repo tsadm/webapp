@@ -1,5 +1,7 @@
 DOCKER_CMD ?=
 DOCKER_IMG ?= tsadm/master
+TEST_SUITE ?=
+TSADM_LOG ?= off
 
 clean:
 	@find . -type d -name __pycache__ | xargs rm -rfv
@@ -7,16 +9,20 @@ clean:
 	@rm -rf .coverage htmlcov
 
 run-master:
-	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -p 8000:8000 $(DOCKER_IMG) $(DOCKER_CMD)
+	docker run -it --rm --user $(shell id -u):$(shell id -g) \
+		-v $(PWD):/opt/tsadm/webapp -p 8000:8000 \
+		-e TSADM_LOG=$(TSADM_LOG) \
+		$(DOCKER_IMG) $(DOCKER_CMD)
 
 run-masterdev:
-	make run-master DOCKER_IMG=tsadm/masterdev
+	make run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug
 
 run-tests-py2:
-	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -e TSADM_LOG=off tsadm/masterdev python2 manage.py test $(TEST_SUITE)
+	make run-master DOCKER_CMD='python2 manage.py test $(TEST_SUITE)' \
+		DOCKER_IMG=tsadm/masterdev
 
 run-tests-py3:
-	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -e TSADM_LOG=off tsadm/masterdev python3 manage.py test $(TEST_SUITE)
+	make run-master DOCKER_CMD='python3 manage.py test $(TEST_SUITE)'
 
 run-tests: run-tests-py2 run-tests-py3
 
@@ -32,4 +38,4 @@ develdb:
 	python3 manage.py migrate
 	python3 manage.py loaddata testdata
 
-.PHONY: clean run-master run-masterdev run-tests-py2 run-tests-py3 run-tests tests-coverage django-runserver
+.PHONY: clean run-master run-masterdev run-tests-py2 run-tests-py3 run-tests tests-coverage django-runserver develdb
