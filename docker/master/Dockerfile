@@ -11,9 +11,10 @@ COPY apt.preferences-django /etc/apt/preferences.d/django
 COPY apt.preferences-ansible /etc/apt/preferences.d/ansible
 
 RUN apt-get clean && apt-get update -y \
-    && apt-get install -y --no-install-recommends python python3 \
+    && apt-get install -y --no-install-recommends \
         python3-django \
         ansible \
+        ssh \
     && apt-get autoremove --purge -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb \
         /var/cache/apt/*cache.bin
@@ -22,5 +23,3 @@ VOLUME ["/opt/tsadm/webapp", "/opt/tsadm/ansible"]
 WORKDIR /opt/tsadm/webapp
 
 ENV TSADM_LOG warning
-EXPOSE 8000
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

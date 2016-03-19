@@ -16,3 +16,6 @@ COPY devlogin.sh /root/
 
 COPY sudoers /etc/sudoers.d/tsadm
 RUN chmod 0440 /etc/sudoers.d/tsadm
+
+EXPOSE 8000
+CMD ["make", "-C src", "django-runserver"]
