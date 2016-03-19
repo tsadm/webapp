@@ -1,13 +1,16 @@
+DOCKER_CMD ?=
+DOCKER_IMG ?= tsadm/master
+
 clean:
 	@find . -type d -name __pycache__ | xargs rm -rfv
 	@find . -type f -iname '*.py[co]' | xargs rm -rfv
 	@rm -rf .coverage htmlcov
 
 run-master:
-	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -p 8000:8000 tsadm/master $(DOCKER_CMD)
+	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -p 8000:8000 $(DOCKER_IMG) $(DOCKER_CMD)
 
 run-masterdev:
-	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -p 8000:8000 tsadm/masterdev $(DOCKER_CMD)
+	make run-master DOCKER_IMG=tsadm/masterdev
 
 run-tests-py2:
 	docker run -it --rm --user $(shell id -u):$(shell id -g) -v $(PWD):/opt/tsadm/webapp -e TSADM_LOG=off tsadm/masterdev python2 manage.py test $(TEST_SUITE)
