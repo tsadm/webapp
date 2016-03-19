@@ -1,2 +1,15 @@
+DOCKER_IMG ?= tsadm/masterdev
+DOCKER_CMD ?= make html
+
+
+.PHONY: apidoc
 apidoc:
-	sphinx-apidoc -o src/ ../src/
+	sphinx-apidoc -e -o src/ ../src/
+
+
+.PHONY: run-sphinx
+run-sphinx:
+	docker run -it --rm --user $(shell id -u):$(shell id -g) \
+		-v $(PWD)/..:/opt/tsadm/webapp \
+		-w /opt/tsadm/webapp/docs \
+		$(DOCKER_IMG) $(DOCKER_CMD)
