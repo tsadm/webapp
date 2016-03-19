@@ -1,5 +1,8 @@
 include ../mk/env.mk
 
+.PHONY: default
+default:
+
 .PHONY: run-master
 run-master:
 	@test -d $(PWD)/../src
@@ -24,3 +27,16 @@ run-tests-py3:
 
 .PHONY: run-tests
 run-tests: run-tests-py2 run-tests-py3
+
+.PHONY: build-master
+build-master:
+	docker pull debian:stable
+	docker build -t tsadm/master master
+
+.PHONY: build-masterdev
+build-masterdev:
+	docker build -f master/Dockerfile.dev -t tsadm/masterdev master
+
+.PHONY: sulogin
+sulogin:
+	docker run -it --rm --user 0:0 $(DOCKER_IMG) /bin/bash
