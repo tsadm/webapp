@@ -1,3 +1,3 @@
 Package: ansible
-Pin: release a=testing
-Pin-Priority: 1001
+Pin: version 2.0*
+Pin-Priority: 990

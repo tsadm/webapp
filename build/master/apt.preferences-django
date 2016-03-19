@@ -1,7 +1,7 @@
 Package: python-django*
-Pin: release a=testing
-Pin-Priority: 1001
+Pin: version 1.9*
+Pin-Priority: 990
 
 Package: python3-django*
-Pin: release a=testing
-Pin-Priority: 1001
+Pin: version 1.9*
+Pin-Priority: 990
