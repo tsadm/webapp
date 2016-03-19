@@ -6,8 +6,10 @@ default:
 .PHONY: run-master
 run-master:
 	@test -d $(PWD)/../src
+	@test -d $(PWD)/../../ansible
 	@docker run -it --rm --user $(shell id -u):$(shell id -g) \
 		-v $(PWD)/../src:/opt/tsadm/webapp \
+		-v $(PWD)/../../ansible:/opt/tsadm/ansible \
 		-p 8000:8000 \
 		-e TSADM_LOG=$(TSADM_LOG) \
 		$(DOCKER_IMG) $(DOCKER_CMD)

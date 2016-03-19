@@ -18,7 +18,7 @@ RUN apt-get clean && apt-get update -y \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb \
         /var/cache/apt/*cache.bin
 
-VOLUME ["/opt/tsadm/webapp"]
+VOLUME ["/opt/tsadm/webapp", "/opt/tsadm/ansible"]
 WORKDIR /opt/tsadm/webapp
 
 ENV TSADM_LOG warning
