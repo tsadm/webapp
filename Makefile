@@ -10,7 +10,4 @@ docker-build-master:
 docker-build-masterdev:
 	@cd build/master && make build-masterdev
 
-dia-png-export:
-	@cd docs/dia && make png-export
-
 .PHONY: default clean docker-build-master docker-build-masterdev dia-png-export
