@@ -6,6 +6,10 @@ clean:
 	@find . -type f -iname '*.py[co]' | xargs rm -rfv
 	@rm -rf .coverage htmlcov
 
+.PHONY: tests
+tests:
+	@python3 manage.py test $(TEST_SUITE)
+
 .PHONY: tests-coverage
 tests-coverage:
 	TSADM_LOG=off python3-coverage run --source='.' manage.py test
