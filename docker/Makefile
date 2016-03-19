@@ -16,7 +16,8 @@ run-master:
 
 .PHONY: run-masterdev
 run-masterdev:
-	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug
+	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug \
+		DOCKER_CMD=/bin/bash
 
 .PHONY: run-tests
 run-tests:
