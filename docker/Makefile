@@ -14,11 +14,6 @@ run-master:
 		-e TSADM_LOG=$(TSADM_LOG) \
 		$(DOCKER_IMG) $(DOCKER_CMD)
 
-.PHONY: run-masterdev
-run-masterdev:
-	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug \
-		DOCKER_CMD=/bin/bash
-
 .PHONY: run-tests
 run-tests:
 	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=off \
@@ -32,6 +27,11 @@ build-master:
 .PHONY: build-masterdev
 build-masterdev:
 	@docker build -f master/Dockerfile.dev -t tsadm/masterdev master
+
+.PHONY: devlogin
+devlogin:
+	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug \
+		DOCKER_CMD=/bin/bash
 
 .PHONY: sulogin
 sulogin:
