@@ -18,17 +18,9 @@ run-master:
 run-masterdev:
 	make run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug
 
-.PHONY: run-tests-py2
-run-tests-py2:
-	make run-master DOCKER_CMD='python2 manage.py test $(TEST_SUITE)' \
-		DOCKER_IMG=tsadm/masterdev
-
-.PHONY: run-tests-py3
-run-tests-py3:
-	make run-master DOCKER_CMD='python3 manage.py test $(TEST_SUITE)'
-
 .PHONY: run-tests
-run-tests: run-tests-py2 run-tests-py3
+run-tests:
+	make run-master DOCKER_CMD='python3 manage.py test $(TEST_SUITE)'
 
 .PHONY: build-master
 build-master:
