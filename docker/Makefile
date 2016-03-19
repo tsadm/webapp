@@ -16,21 +16,21 @@ run-master:
 
 .PHONY: run-masterdev
 run-masterdev:
-	make run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug
+	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug
 
 .PHONY: run-tests
 run-tests:
-	make run-master DOCKER_CMD='python3 manage.py test $(TEST_SUITE)'
+	@make -s run-master DOCKER_CMD='python3 manage.py test $(TEST_SUITE)'
 
 .PHONY: build-master
 build-master:
-	docker pull debian:stable
-	docker build -t tsadm/master master
+	@docker pull debian:stable
+	@docker build -t tsadm/master master
 
 .PHONY: build-masterdev
 build-masterdev:
-	docker build -f master/Dockerfile.dev -t tsadm/masterdev master
+	@docker build -f master/Dockerfile.dev -t tsadm/masterdev master
 
 .PHONY: sulogin
 sulogin:
-	docker run -it --rm --user 0:0 $(DOCKER_IMG) /bin/bash
+	@docker run -it --rm --user 0:0 $(DOCKER_IMG) /bin/bash
