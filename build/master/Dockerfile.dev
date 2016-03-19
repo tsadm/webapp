@@ -1,25 +1,11 @@
-FROM debian:stable
+FROM tsadm/master
 MAINTAINER Jeremías Casteglione <jeremias@tincan.co.uk>
 
-COPY apt.sources /etc/apt/sources.list
-COPY apt.preferences /etc/apt/preferences
-
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get clean && apt-get update -y && apt-get dist-upgrade -y
-
-COPY apt.preferences-django /etc/apt/preferences.d/django
-COPY apt.preferences-ansible /etc/apt/preferences.d/ansible
-
 RUN apt-get clean && apt-get update -y \
-    && apt-get install -y --no-install-recommends python python3 make \
-        python-django python3-django \
-        ansible \
-        python-coverage python3-coverage \
+    && apt-get install -y --no-install-recommends make \
+        python-django \
+        python3-coverage \
+        python3-sphinx \
     && apt-get autoremove --purge -y && apt-get clean
 
-VOLUME ["/opt/tsadm/webapp"]
-WORKDIR /opt/tsadm/webapp
-
 ENV TSADM_LOG debug
-EXPOSE 8000
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

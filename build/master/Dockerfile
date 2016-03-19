@@ -11,10 +11,12 @@ COPY apt.preferences-django /etc/apt/preferences.d/django
 COPY apt.preferences-ansible /etc/apt/preferences.d/ansible
 
 RUN apt-get clean && apt-get update -y \
-    && apt-get install -y --no-install-recommends python3 \
+    && apt-get install -y --no-install-recommends python python3 \
         python3-django \
         ansible \
-    && apt-get autoremove --purge -y && apt-get clean
+    && apt-get autoremove --purge -y && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb \
+        /var/cache/apt/*cache.bin
 
 VOLUME ["/opt/tsadm/webapp"]
 WORKDIR /opt/tsadm/webapp
