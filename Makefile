@@ -2,6 +2,7 @@ default:
 
 clean:
 	@cd src/ && make clean
+	@cd docs/ && make clean
 
 docker-build-master:
 	@cd build/master && make build-master
