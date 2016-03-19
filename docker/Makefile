@@ -10,10 +10,9 @@ run-master:
 	@docker run -it --rm \
 		--name $(DOCKER_MASTER_NAME) \
 		--hostname $(DOCKER_MASTER_NAME) \
-		--user $(DOCKER_USER) \
 		-v $(PWD)/../../webapp:/opt/tsadm/webapp \
 		-v $(PWD)/../../ansible:/opt/tsadm/ansible \
-		-p 8000:8000 \
+		$(DOCKER_ARGS) \
 		-e TSADM_LOG=$(TSADM_LOG) \
 		-e DOCKER_UID=$(DOCKER_UID) \
 		-e DOCKER_GID=$(DOCKER_GID) \
@@ -22,8 +21,9 @@ run-master:
 
 .PHONY: run-tests
 run-tests:
-	@make -s run-master DOCKER_IMG=$(DOCKER_DEVIMG) TSADM_LOG=off \
-		DOCKER_CMD='make -C src tests'
+	@make -s run-master DOCKER_IMG=$(DOCKER_IMG) TSADM_LOG=off \
+		DOCKER_ARGS='-w /opt/tsadm/webapp/src' \
+		DOCKER_CMD='python3 manage.py test'
 
 .PHONY: build-master
 build-master:
@@ -37,9 +37,5 @@ build-masterdev:
 .PHONY: devlogin
 devlogin:
 	@make -s run-master DOCKER_IMG=$(DOCKER_DEVIMG) TSADM_LOG=debug \
-		DOCKER_USER=0:0 \
+		DOCKER_ARGS='-p 8000:8000' \
 		DOCKER_CMD=/root/devlogin.sh
-
-.PHONY: sulogin
-sulogin:
-	@docker run -it --rm --user 0:0 $(DOCKER_IMG) /bin/bash
