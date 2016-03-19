@@ -12,9 +12,7 @@ COPY apt.preferences-ansible /etc/apt/preferences.d/ansible
 
 RUN apt-get clean && apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        python3-django \
-        ansible \
-        ssh \
+        python3-django ansible ssh \
     && apt-get autoremove --purge -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb \
         /var/cache/apt/*cache.bin
@@ -23,3 +21,7 @@ VOLUME ["/opt/tsadm/webapp", "/opt/tsadm/ansible"]
 WORKDIR /opt/tsadm/webapp
 
 ENV TSADM_LOG warning
+
+RUN groupadd tsadm
+RUN useradd -c tsadm -m -g tsadm -s /usr/sbin/nologin tsadm
+USER tsadm:tsadm

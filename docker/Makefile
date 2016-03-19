@@ -7,7 +7,7 @@ default:
 run-master:
 	@test -d $(PWD)/../../webapp
 	@test -d $(PWD)/../../ansible
-	@docker run -it --rm --name $(DOCKER_NAME) \
+	@docker run -it --rm --name $(DOCKER_MASTER_NAME) \
 		--user $(DOCKER_USER) \
 		-v $(PWD)/../../webapp:/opt/tsadm/webapp \
 		-v $(PWD)/../../ansible:/opt/tsadm/ansible \
@@ -20,21 +20,21 @@ run-master:
 
 .PHONY: run-tests
 run-tests:
-	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=off \
+	@make -s run-master DOCKER_IMG=$(DOCKER_DEVIMG) TSADM_LOG=off \
 		DOCKER_CMD='make -C src tests'
 
 .PHONY: build-master
 build-master:
 	@docker pull debian:stable
-	@docker build -t tsadm/master master
+	@docker build -t $(DOCKER_IMG) master
 
 .PHONY: build-masterdev
 build-masterdev:
-	@docker build -f master/Dockerfile.dev -t tsadm/masterdev master
+	@docker build -t $(DOCKER_DEVIMG) masterdev 
 
 .PHONY: devlogin
 devlogin:
-	@make -s run-master DOCKER_IMG=tsadm/masterdev TSADM_LOG=debug \
+	@make -s run-master DOCKER_IMG=$(DOCKER_DEVIMG) TSADM_LOG=debug \
 		DOCKER_USER=0:0 \
 		DOCKER_CMD=/root/devlogin.sh
 
