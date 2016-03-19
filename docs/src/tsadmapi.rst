@@ -1,9 +1,25 @@
 tsadmapi package
 ================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    tsadmapi.inventory
+
 Submodules
 ----------
 
 .. toctree::
 
-   tsadmapi.inventory
+   tsadmapi.apps
+   tsadmapi.urls
+
+Module contents
+---------------
+
+.. automodule:: tsadmapi
+    :members:
+    :undoc-members:
+    :show-inheritance:

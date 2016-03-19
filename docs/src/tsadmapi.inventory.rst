@@ -1,6 +1,15 @@
 tsadmapi.inventory package
 ==========================
 
+Submodules
+----------
+
+.. toctree::
+
+   tsadmapi.inventory.test
+   tsadmapi.inventory.urls
+   tsadmapi.inventory.views
+
 Module contents
 ---------------
 
