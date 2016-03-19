@@ -1,6 +1,8 @@
 FROM tsadm/master
 MAINTAINER Jeremías Casteglione <jeremias@tincan.co.uk>
 
+COPY apt.preferences-sphinx /etc/apt/preferences.d/sphinx
+
 RUN apt-get clean && apt-get update -y \
     && apt-get install -y --no-install-recommends make \
         python-django \

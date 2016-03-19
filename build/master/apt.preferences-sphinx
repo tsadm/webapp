@@ -1,0 +1,19 @@
+Package: python3-sphinx*
+Pin: release a=testing
+Pin-Priority: 1001
+
+Package: sphinx-*
+Pin: release a=testing
+Pin-Priority: 1001
+
+Package: python3-alabaster
+Pin: release a=testing
+Pin-Priority: 1001
+
+Package: libjs-jquery
+Pin: release a=testing
+Pin-Priority: 1001
+
+Package: libjs-sphinxdoc
+Pin: release a=testing
+Pin-Priority: 1001
