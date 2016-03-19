@@ -1,4 +1,5 @@
 DOCKER_IMG ?= tsadm/master
+DOCKER_NAME ?= tsadm-master
 DOCKER_CMD ?=
 TEST_SUITE ?=
 TSADM_LOG ?= off
