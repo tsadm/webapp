@@ -24,4 +24,6 @@ ENV TSADM_LOG warning
 
 RUN groupadd tsadm
 RUN useradd -c tsadm -m -g tsadm -s /usr/sbin/nologin tsadm
+
 USER tsadm:tsadm
+RUN ssh-keygen -b 4096 -t rsa -N '' -f ~/.ssh/id_rsa
