@@ -6,5 +6,7 @@ DOCKER_ARGS ?=
 DOCKER_UID ?= $(shell id -u)
 DOCKER_GID ?= $(shell id -g)
 DOCKER_UMASK ?= $(shell umask)
+DOCKER_SLAVE_IMG ?= tsadm/slave
+DOCKER_SLAVE_NAME ?= tsadm-slave
 TEST_SUITE ?=
 TSADM_LOG ?= off

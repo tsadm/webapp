@@ -39,3 +39,18 @@ devlogin:
 	@make -s run-master DOCKER_IMG=$(DOCKER_DEVIMG) TSADM_LOG=debug \
 		DOCKER_ARGS='-p 8000:8000' \
 		DOCKER_CMD=/root/devlogin.sh
+
+.PHONY: build-slave
+build-slave:
+	@docker build -t $(DOCKER_SLAVE_IMG) slave
+
+.PHONY: run-slave
+run-slave:
+	@docker run -it --rm \
+		--name $(DOCKER_SLAVE_NAME) \
+		--hostname $(DOCKER_SLAVE_NAME) \
+		$(DOCKER_ARGS) \
+		-e DOCKER_UID=$(DOCKER_UID) \
+		-e DOCKER_GID=$(DOCKER_GID) \
+		-e DOCKER_UMASK=$(DOCKER_UMASK) \
+		$(DOCKER_SLAVE_IMG) $(DOCKER_CMD)
