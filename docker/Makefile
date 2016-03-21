@@ -27,7 +27,6 @@ run-tests:
 
 .PHONY: build-master
 build-master:
-	@docker pull debian:stable
 	@docker build -t $(DOCKER_IMG) master
 
 .PHONY: build-masterdev
