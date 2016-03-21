@@ -31,7 +31,7 @@ build-master:
 
 .PHONY: build-masterdev
 build-masterdev:
-	@docker build -t $(DOCKER_DEVIMG) masterdev 
+	@docker build -t $(DOCKER_DEVIMG) masterdev
 
 .PHONY: devlogin
 devlogin:
