@@ -5,4 +5,4 @@ groupmod -g ${DOCKER_GID} tsadm
 usermod -g ${DOCKER_GID} -u ${DOCKER_UID} tsadm
 umask ${DOCKER_UMASK}
 set +e
-exec su -s /bin/bash -l tsadm
+su -s /bin/bash -l tsadm
