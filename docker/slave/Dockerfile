@@ -8,8 +8,7 @@ RUN apt-get clean && apt-get update -y && apt-get dist-upgrade -y
 
 RUN apt-get clean && apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        python \
-        ssh \
+        python ssh \
     && apt-get autoremove --purge -y && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb \
         /var/cache/apt/*cache.bin
@@ -17,11 +16,11 @@ RUN apt-get clean && apt-get update -y \
 RUN groupadd tsadm
 RUN useradd -c tsadm -m -g tsadm -s /usr/sbin/nologin tsadm
 
-EXPOSE 22
-COPY slave-init.sh /root/
-
 USER tsadm:tsadm
 RUN ssh-keygen -b 4096 -t rsa -N '' -f ~/.ssh/id_rsa
 
 USER root:root
+COPY slave-init.sh /root/
+
+EXPOSE 22
 CMD ["/root/slave-init.sh"]
