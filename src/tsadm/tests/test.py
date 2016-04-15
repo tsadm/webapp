@@ -15,3 +15,7 @@ class TSAdmTest(TSAdmTestBase):
     def test_HttpCharset(self):
         resp = self.client.head(self.getURL('home'))
         self.assertEqual(resp.charset, 'utf-8')
+
+    def test_InfoView(self):
+        resp = self.client.get(self.getURL('info'))
+        self.assertEqual(resp.status_code, 200)
