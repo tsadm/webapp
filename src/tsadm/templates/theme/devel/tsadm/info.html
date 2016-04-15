@@ -6,9 +6,13 @@
 {{ tsadm.config }}
 
 DB Connections{% for dbinfo in tsadm.dbConnections %}
-{{ dbinfo.alias }} ({{ dbinfo.version }})
-    {{ dbinfo.vendor }} ({{ dbinfo.vendorVersion }})
-    {{ dbinfo.name }}{% endfor %}
+    {{ dbinfo.alias }} ({{ dbinfo.version }})
+        {{ dbinfo.vendor }} ({{ dbinfo.vendorVersion }})
+        {{ dbinfo.name }}{% endfor %}
+
+Python {{ python.version }}
+
+Django {{ django.version }}
 </pre>
 
 {% endblock %}

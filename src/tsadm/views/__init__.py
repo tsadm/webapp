@@ -1,5 +1,8 @@
-import tsadmuser
+import sys
+import django
 import django.db
+
+import tsadmuser
 from .base import TSAdmView
 from ..log import TSAdmLogger
 
@@ -49,5 +52,11 @@ class InfoView(TSAdmView):
         context['tsadm'] = {
             'config': self.tsadm.cfg.dumps(),
             'dbConnections': self._dbconns(),
+        }
+        context['python'] = {
+            'version': '{}.{}.{}'.format(sys.version_info.major, sys.version_info.minor, sys.version_info.micro),
+        }
+        context['django'] = {
+            'version': django.get_version(),
         }
         return context
