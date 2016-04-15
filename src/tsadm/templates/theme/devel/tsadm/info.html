@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<pre>Config
+<pre>tsadm {{ tsadm.version }}
+
+Config
 {{ tsadm.config }}
 
 DB Connections{% for dbinfo in tsadm.dbConnections %}
