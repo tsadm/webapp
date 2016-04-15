@@ -4,6 +4,7 @@ include ../mk/env.mk
 
 .PHONY: apidoc
 apidoc:
+	rm -rf src
 	sphinx-apidoc -e -o src/ ../src/
 
 
