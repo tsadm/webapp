@@ -18,3 +18,17 @@ class HomeView(TSAdmView):
             userSites=tsadmuser.sitesAll(self.tsadm.user),
         )
         return context
+
+
+class InfoView(TSAdmView):
+    template_name = 'tsadm/info.html'
+
+    def __init__(self):
+        logger.debug('InfoView init')
+        super(InfoView, self).__init__()
+
+    def get_context_data(self, **kwargs):
+        logger.debug('get_context_data')
+        context = super(InfoView, self).get_context_data(**kwargs)
+        context['tsadm'] = self.tsadm
+        return context

@@ -17,10 +17,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import HomeView
+from .views import HomeView, InfoView
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^info/$', InfoView.as_view(), name='info'),
     url(r'^auth/', include('tsadm.auth_urls')),
     url(r'^user/', include('tsadmuser.urls', namespace='user')),
     url(r'^site/', include('tsadmsite.urls', namespace='site')),
