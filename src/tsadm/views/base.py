@@ -24,6 +24,7 @@ class TSAdmView(LoginRequiredMixin, TemplateView):
         logger.debug('get_context_data')
         context = super(TSAdmView, self).get_context_data(**kwargs)
         context['tsadm'] = dict(
+            version=self.tsadm.version,
             user=self.tsadm.user,
         )
         return context
