@@ -1,3 +1,4 @@
+import json
 import os.path
 
 _RUN_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -15,7 +16,10 @@ class TSAdmCfg:
     def get(self, name, default=None):
         return _CFG.get(name, default)
 
+    def dumps(self):
+        return json.dumps(_CFG, sort_keys=True, indent=4)
+
 
 if __name__ == '__main__':
-    import json
-    print(json.dumps(_CFG, sort_keys=True, indent=4))
+    cfg = TSAdmCfg()
+    print(cfg.dumps())
