@@ -47,10 +47,8 @@ class InfoView(TSAdmView):
     def get_context_data(self, **kwargs):
         logger.debug('get_context_data')
         context = super(InfoView, self).get_context_data(**kwargs)
-        context['tsadm'] = {
-            'config': self.tsadm.cfg.dumps(),
-            'dbConnections': self._dbconns(),
-        }
+        context['tsadm']['config'] = self.tsadm.cfg.dumps()
+        context['tsadm']['dbConnections'] = self._dbconns()
         context['python'] = {
             'version': '{}.{}.{}'.format(sys.version_info.major, sys.version_info.minor, sys.version_info.micro),
         }
