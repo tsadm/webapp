@@ -1,6 +1,14 @@
 {% extends 'theme/devel/tsadm/base.html' %}
 
 {% block content %}
+
 <pre>Config
-{{ tsadm.cfg.dumps }}</pre>
+{{ tsadm.config }}
+
+DB Connections{% for dbinfo in tsadm.dbConnections %}
+{{ dbinfo.alias }} ({{ dbinfo.version }})
+    {{ dbinfo.vendor }} ({{ dbinfo.vendorVersion }})
+    {{ dbinfo.name }}{% endfor %}
+</pre>
+
 {% endblock %}
