@@ -2,6 +2,8 @@ import json
 import os.path
 
 _RUN_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 _CFG = {
     'LOG_LEVEL': 'OFF',
@@ -9,6 +11,7 @@ _CFG = {
     'TEMPLATES_THEME': 'devel',
     'JSON_PRETTY_PRINT': True,
     'RUN_DIR': _RUN_DIR,
+    'BASE_DIR': _BASE_DIR,
 }
 
 
