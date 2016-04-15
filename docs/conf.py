@@ -59,7 +59,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'tsadm webapp'
-copyright = '2016, Jeremias Casteglione'
+copyright = '2016, Tincan Limited'
 author = 'Jeremias Casteglione'
 
 # The version info for the project you're documenting, acts as replacement for
