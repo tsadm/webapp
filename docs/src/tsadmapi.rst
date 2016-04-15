@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     tsadmapi.inventory
+    tsadmapi.slave
 
 Submodules
 ----------

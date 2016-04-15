@@ -1,19 +1,18 @@
-tsadm.views package
-===================
+tsadmapi.slave package
+======================
 
 Submodules
 ----------
 
 .. toctree::
 
-   tsadm.views.base
-   tsadm.views.files
-   tsadm.views.json
+   tsadmapi.slave.urls
+   tsadmapi.slave.views
 
 Module contents
 ---------------
 
-.. automodule:: tsadm.views
+.. automodule:: tsadmapi.slave
     :members:
     :undoc-members:
     :show-inheritance:
